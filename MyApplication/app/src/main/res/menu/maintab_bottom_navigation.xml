@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/item_news"
+        android:icon="@drawable/main_tab_home_selector"
+        android:title="主页"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_lib"
+        android:icon="@drawable/main_tab_alarm_selector"
+        android:title="视频"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_find"
+        android:icon="@drawable/main_tab_alarm_selector"
+        android:title="发现"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/item_more"
+        android:icon="@drawable/main_tab_my_selector"
+        android:title="更多"
+        app:showAsAction="ifRoom" />
+
+</menu>
