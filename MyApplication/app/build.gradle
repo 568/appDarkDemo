@@ -36,6 +36,7 @@ android {
             renderscript.srcDirs = ['src']
             res.srcDirs = ['res', 'src/main/res', 'src/main/res/xml'
                            , 'src/main/res/layouts', 'src/main/res/layouts/tablayout'
+                           , 'src/main/res/layouts/toastlayout'
             ]
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['jniLibs']
