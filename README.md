@@ -8,5 +8,6 @@
 #2.2018-12-02 升级<br>
 ###1）底部导航BottomNavigationView<br>
 ###2）主页结构搭建<br>
+结构设计思路描述图<br>
 <img src="https://raw.githubusercontent.com/wiki/568/appDarkDemo/images/translation.png" width="300" />
 <br>
