@@ -29,13 +29,14 @@ public class MainChildFragment extends BaseLazyFragment implements SwipeRefreshL
     protected RecyclerView mRecylerView;
     protected LinearLayoutManager mManager;
     protected TestAdapter adapter;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_maintab_mainchild_layout, container, false);
 
-        mRecylerView = (RecyclerView) rootView.findViewById(R.id.recylerView);
-        mRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipe);
+        mRecylerView = rootView.findViewById(R.id.recylerView);
+        mRefreshLayout = rootView.findViewById(R.id.swipe);
 
         mManager = new LinearLayoutManager(getActivity());
         mRecylerView.setLayoutManager(mManager);
@@ -79,6 +80,7 @@ public class MainChildFragment extends BaseLazyFragment implements SwipeRefreshL
             mRefreshLayout.setEnabled(true);
         }
     }
+
     protected class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private List<String> datas;

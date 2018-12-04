@@ -21,13 +21,12 @@
             android:textColor="#ffff"
             android:textSize="24sp" />
     </FrameLayout>
-    <!--app:layout_behavior="com.example.lv.myapplication.ui.maintab.mainbehavior.MainToolBarBehavior"-->
     <FrameLayout
         android:id="@+id/main_toolbar_pager"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toobar_height"
         android:background="@color/transparent"
-        app:layout_behavior="com.example.lv.myapplication.ui.maintab.mainbehavior.MainToolBarBehavior">
+        app:layout_behavior="com.haste.lv.faith.ui.maintab.mainbehavior.MainToolBarBehavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -78,14 +77,21 @@
         </RelativeLayout>
     </FrameLayout>
 
-    <android.support.design.widget.TabLayout
+    <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
         android:id="@+id/main_tab_pager"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:layout_behavior="com.example.lv.myapplication.ui.maintab.mainbehavior.MainTabBehavior"
-        app:tabBackground="@color/tabbackgorud"
-        app:tabIndicatorColor="#aba7a7"
-        app:tabSelectedTextColor="#df3232" />
+        app:layout_behavior="com.haste.lv.faith.ui.maintab.mainbehavior.MainTabBehavior"
+        android:background="#EEEEEE"
+        app:tl_indicator_color="#3cd3db"
+        app:tl_indicator_height="1.5dp"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_tab_padding="20dp"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="#000000"
+        app:tl_textUnselectColor="#66000000"
+        app:tl_underline_color="#1A000000"
+        app:tl_underline_height="1dp" />
 
     <com.haste.lv.faith.ui.maintab.mainbehavior.HeadStateViewPager
         android:id="@+id/main_content_pager"
@@ -93,5 +99,5 @@
         android:layout_height="match_parent"
         android:background="#ffff"
         android:scrollbars="none"
-        app:layout_behavior="com.example.lv.myapplication.ui.maintab.mainbehavior.MainContentBehavior" />
+        app:layout_behavior="com.haste.lv.faith.ui.maintab.mainbehavior.MainContentBehavior" />
 </android.support.design.widget.CoordinatorLayout>

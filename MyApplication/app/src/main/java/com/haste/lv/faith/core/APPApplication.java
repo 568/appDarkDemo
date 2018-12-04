@@ -2,6 +2,7 @@ package com.haste.lv.faith.core;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -19,9 +20,11 @@ import java.util.WeakHashMap;
  */
 
 public class APPApplication extends Application {
+    private static Context instance;
     @Override
     public void onCreate() {
         super.onCreate();
+        instance=getApplicationContext();
         SharedPreferencesHelper.init(getApplicationContext(), "app_globle_sp");
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
@@ -64,6 +67,9 @@ public class APPApplication extends Application {
         });
     }
 
+    public static Context getContext(){
+        return instance;
+    }
     private WeakHashMap<Activity, View> nightModeHashMap = new WeakHashMap<>();
 
     public void checkNightMode(Activity activity) {

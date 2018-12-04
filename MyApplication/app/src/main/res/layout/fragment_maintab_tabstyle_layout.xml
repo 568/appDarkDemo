@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mNestedScrollView"
+    xmlns:tl="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eeeeee"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout
+            android:id="@+id/tl_1"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            tl:tl_bar_color="#ffffff"
+            tl:tl_indicator_color="#2C97DE"
+            tl:tl_indicator_corner_radius="8dp"
+            tl:tl_tab_padding="20dp" />
+
+        <com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout
+            android:id="@+id/tl_2"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            tl:tl_indicator_anim_enable="true"
+            tl:tl_indicator_bounce_enable="false"
+            tl:tl_indicator_color="#009688"
+            tl:tl_tab_padding="20dp" />
+
+        <com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout
+            android:id="@+id/tl_3"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            tl:tl_bar_color="#ffffff"
+            tl:tl_indicator_anim_enable="true"
+            tl:tl_indicator_color="#F6CE59"
+            tl:tl_indicator_margin_bottom="2dp"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_margin_top="2dp"
+            tl:tl_textBold="SELECT" />
+
+
+        <com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout
+            android:id="@+id/tl_4"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            tl:tl_bar_color="#ffffff"
+            tl:tl_indicator_color="#EC7263"
+            tl:tl_indicator_margin_bottom="2dp"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_margin_top="2dp"
+            tl:tl_tab_width="80dp"
+            tl:tl_textBold="BOTH" />
+
+        <com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout
+            android:id="@+id/tl_5"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            tl:tl_indicator_anim_enable="true"
+            tl:tl_indicator_bounce_enable="false"
+            tl:tl_indicator_margin_bottom="2dp"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_margin_top="2dp"
+            tl:tl_tab_space_equal="true" />
+
+        <com.haste.lv.faith.uiviews.tablayout.CommonTabLayout
+            android:id="@+id/tl_200"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="#ffffff"
+            tl:tl_iconHeight="23dp"
+            tl:tl_iconWidth="23dp"
+            tl:tl_indicator_color="#2C97DE"
+            tl:tl_indicator_height="0dp"
+            tl:tl_textSelectColor="#2C97DE"
+            tl:tl_textUnselectColor="#66000000"
+            tl:tl_textsize="12sp"
+            tl:tl_underline_color="#DDDDDD"
+            tl:tl_underline_height="1dp"/>
+        <FrameLayout
+            android:id="@+id/fl_change"
+            android:layout_width="match_parent"
+            android:layout_height="84dp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_2"
+            android:layout_width="match_parent"
+            android:layout_height="84dp" />
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_42"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#009688"
+            tl:tl_tab_padding="0dp"
+            tl:tl_tab_width="95dp"
+            tl:tl_textsize="15sp"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_52"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#F6CE59"
+            tl:tl_indicator_width="10dp"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_62"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#EC7263"
+            tl:tl_indicator_corner_radius="2dp"
+            tl:tl_indicator_height="4dp"
+            tl:tl_indicator_width="4dp"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_72"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#57385C"
+            tl:tl_indicator_corner_radius="1.5dp"
+            tl:tl_indicator_height="3dp"
+            tl:tl_indicator_width="10dp"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_82"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#E45171"
+            tl:tl_indicator_color="#eeeeee"
+            tl:tl_indicator_style="TRIANGLE"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_92"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#6D8FB0"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_style="BLOCK"/>
+
+        <com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout
+            android:id="@+id/tl_102"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#222831"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            tl:tl_indicator_color="#393E46"
+            tl:tl_indicator_corner_radius="5dp"
+            tl:tl_indicator_margin_left="2dp"
+            tl:tl_indicator_margin_right="2dp"
+            tl:tl_indicator_style="BLOCK"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
