@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <root-path path="external_files" name="/storage/" />
+        <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/UDCIM/camera目录-->
+        <external-path name="UDCIM" path="UDCIM/camera" />
+
+        <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/目录-->
+        <external-path path="." name="external_storage_root" />
+
+        <!--代表外部存储区域的根目录下的文件 Environment.getExternalStorageDirectory()/Pictures/camera目录-->
+        <external-path name="Pictures" path="Pictures/camera" />
+
+        <!--代表app 私有的存储区域 Context.getFilesDir()目录下的images目录 /data/user/0/com.hm.camerademo/files/images-->
+        <files-path name="private_files" path="images" />
+
+        <!--代表app 私有的存储区域 Context.getCacheDir()目录下的images目录 /data/user/0/com.hm.camerademo/cache/images-->
+        <cache-path name="private_cache" path="images" />
+
+        <!--代表app 外部存储区域根目录下的文件 Context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)目录下的Pictures目录-->
+        <!--/storage/emulated/0/Android/data/com.xx.xxxxxx/files/Pictures-->
+        <external-files-path name="external_files" path="Pictures" />
+
+        <!--代表app 外部存储区域根目录下的文件 Context.getExternalCacheDir目录下的images目录-->
+        <!--/storage/emulated/0/Android/data/com.xx.xxxxxx/cache/images-->
+        <external-cache-path name="external_cache" path="" />
+    </paths>
+
+</resources>

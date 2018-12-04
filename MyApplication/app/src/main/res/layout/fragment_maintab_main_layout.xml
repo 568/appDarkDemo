@@ -87,7 +87,7 @@
         app:tabIndicatorColor="#aba7a7"
         app:tabSelectedTextColor="#df3232" />
 
-    <com.example.lv.myapplication.ui.maintab.mainbehavior.HeadStateViewPager
+    <com.haste.lv.faith.ui.maintab.mainbehavior.HeadStateViewPager
         android:id="@+id/main_content_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

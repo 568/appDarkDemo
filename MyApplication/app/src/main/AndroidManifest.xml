@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lv.myapplication">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.haste.lv.faith">
 
     <application
-        android:name=".core.APPApplication"
+        android:name="com.haste.lv.faith.core.APPApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/DefaultAppTheme">
-        <activity android:name=".MainActivity">
+
+        <!-- 7.0api申请文件管理处理方式 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.haste.lv.faith.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"
+                tools:replace="android:resource" />
+        </provider>
+        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true"/>
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="54470f0dfd98c5c2a60116f6" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${UMENG_CHANNEL_VALUE}" />
+
+        <activity android:name="com.haste.lv.faith.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,11 +39,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DarkActivity"
+            android:name="com.haste.lv.faith.DarkActivity"
             android:launchMode="singleTask"
             android:theme="@style/TranslucentTheme" />
         <activity
-            android:name=".FirstActivity"
+            android:name="com.haste.lv.faith.FirstActivity"
             android:launchMode="singleTop" />
     </application>
 

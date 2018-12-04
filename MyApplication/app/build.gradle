@@ -3,6 +3,10 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion '28.0.1'
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    //关闭Android Studio的PNG合法性检查的
+
     defaultConfig {
         applicationId "com.example.lv.myapplication"
         minSdkVersion 18
@@ -10,13 +14,122 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //引入库，比如要用到的__android_log_print
+            abiFilters "armeabi", "x86", "armeabi-v7a"      //  显示指定支持的ABIs
+//            cFlags "-std=c++11 -fexceptions"                // C++11
+//            stl "gnustl_static"
+        }
+        multiDexEnabled true
+        //当方法数超过65535(方法的索引使用的是一个short值，
+        //而short最大值是65535)的时候允许打包成多个dex文件，动态加载dex。
+        //版本名后面添加一句话，意思就是flavor dimension 它的维度就是该版本号，这样维度就是都是统一的了
+        flavorDimensions "versionCode"
     }
+    sourceSets {
+        main {
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+            java.srcDirs = ['src/main','src/main/java']
+            resources.srcDirs = ['src', 'src/main/resources', 'src/main/resources/xml']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
+            res.srcDirs = ['res', 'src/main/res', 'src/main/res/xml'
+                           , 'res/layouts', 'res/layouts/tablayout'
+            ]
+            assets.srcDirs = ['assets']
+            jniLibs.srcDirs = ['jniLibs']
+        }
+        androidTest.setRoot('src/test')
+    }
+    //multiDex的一些相关配置，这样配置可以让你的编译速度更快
+    dexOptions {
+        preDexLibraries = false
+        //让它不要对Lib做preDexing
+        incremental true
+        //开启incremental dexing,优化编译效率，这个功能android studio默认是关闭的。
+        javaMaxHeapSize "4g"     //增加java堆内存大小
+    }
+    lintOptions {
+        abortOnError false
+        //即使报错也不会停止打包
+        checkReleaseBuilds false
+        //打包release版本的时候进行检测
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
     buildTypes {
-        release {
-            minifyEnabled false
+        release { //release版本的配置
+            zipAlignEnabled true  //是否支持zip
+            shrinkResources false  // 移除无用的resource文件
+            minifyEnabled true    //是否进行混淆
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //release的Proguard默认为Module下的proguard-rules.pro文件.
+            debuggable false  //是否支持调试
+            //ndk的一些配置
+            ndk {
+                // cFlags "-std=c++11 -fexceptions -O3 -D__RELEASE__" // C++11
+                // platformVersion  = "19"
+//                moduleName "lwsafe" //设置库(so)文件名称
+//                ldLibs "log", "z", "m", "jnigraphics", "android"
+                //引入库，比如要用到的__android_log_print
+                abiFilters "armeabi", "x86", "armeabi-v7a"//, "x86"
+//                cFlags "-std=c++11 -fexceptions" // C++11
+//                stl "gnustl_static"
+            }
+            //采用动态替换字符串的方式生成不同的release.apk
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('release.apk')) {
+                        def timeStamp = new Date().format('yyyyMMddHH');
+                        def fileName = "common-${defaultConfig.versionName}" + "-" + timeStamp + "-wn-" + ".apk";
+                        output.outputFile = file("${outputFile.parent}/${fileName}")
+                    }
+                }
+            }
+            jniDebuggable false  //关闭jni调试
+        }
+        debug {//debug版本的配置
+            minifyEnabled false
+            zipAlignEnabled true
+            shrinkResources false // 移除无用的resource文件
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+//          jniDebuggable true
+            ndk {
+                abiFilters "armeabi", "x86", "armeabi-v7a"
+                //cFlags "-std=c++11 -fexceptions -g -D __DEBUG__" // C++11
+            }
+            jniDebuggable true
         }
     }
+    // 友盟多渠道打包
+    if (productFlavors.size() == 0) {
+        productFlavors {
+            official {}
+
+        }
+    }
+//    productFlavors {
+//        //在这里你可以设置你的产品发布的一些东西，
+//        //比如你现在一共软件需要发布到不同渠道，
+//        //且不同渠道中的包名不同，那么可以在此进行配置；
+//        //甚至可以设置不同的 AndroidManifest.xml 文件。
+//        official {
+//        }
+//    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    //所谓ProductFlavors其实就是可定义的产品特性，
+    //配合 manifest merger 使用的时候就可以达成在一次编译
+    //过程中产生多个具有自己特性配置的版本。
+    //上面这个配置的作用就是，为每个渠道包产生不同的 UMENG_CHANNEL_VALUE 的值。
 }
 
 dependencies {
@@ -25,7 +138,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support:recyclerview-v7:26.1.0'
-
+    implementation 'com.android.support:multidex:1.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
