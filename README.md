@@ -11,3 +11,7 @@
 结构设计思路描述图<br>
 <img src="https://raw.githubusercontent.com/wiki/568/appDarkDemo/images/main_design.png" width="300" />
 <br>
+#3.2018-12-06 升级<br>
+###1）多样式列表视图PullToRefreshRecyclerView<br>
+###2）万能适配器(MultipleRecyclerViewAdapter)可设置状态的错误页面、空页面、加载中页面、内容页面自由切换<br>
+###3)带视差效果的视图(PullZoomRecyclerView)可以是RecyclerView、ScrollView、ListView<br>
