@@ -11,6 +11,8 @@ import java.lang.reflect.Field;
  * Created by lv on 18-11-30.
  * 当菜单项多于3个时，效果和3个及以下的效果已经完全不一样了
  * 利用反射改变mShiftingMode值为true
+ * //默认 >3 的选中效果会影响ViewPager的滑动切换时的效果，故利用反射去掉
+ * BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
  */
 
 public class BottomNavigationViewHelper {
@@ -27,12 +29,12 @@ public class BottomNavigationViewHelper {
 
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
-                itemView.setShiftingMode(false);
+                itemView.setShifting(false);
                 itemView.setChecked(itemView.getItemData().isChecked());
             }
 
         } catch (NoSuchFieldException e) {
-           //Unable to get shift mode fiel
+            //Unable to get shift mode fiel
         } catch (IllegalAccessException e) {
             //Unable to change value of shift mode
         }

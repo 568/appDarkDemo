@@ -41,6 +41,8 @@ import java.util.ArrayList;
  * 1.支持多种Indicator显示器,以及Indicator动画
  * 2.支持未读消息显示
  * 3.支持Icon以及Icon位置
+ *
+ * notifyDataSetChanged根据Icon的Gravity属性进入不同布局的View做Tab
  */
 
 public class CommonTabLayout extends FrameLayout implements ValueAnimator.AnimatorUpdateListener {

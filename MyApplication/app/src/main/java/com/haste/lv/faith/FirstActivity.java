@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.haste.lv.faith.core.HFBaseActivity;
+
 /**
  * Created by lv on 18-11-21.
  */
 
-public class FirstActivity extends AppCompatActivity implements View.OnClickListener {
+public class FirstActivity extends HFBaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

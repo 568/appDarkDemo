@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 /**
  * Created by lv on 18-12-4.
+ * Fragment的管理辅助类FragmentChangeManager
  */
 
 public class FragmentChangeManager {

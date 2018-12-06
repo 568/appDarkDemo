@@ -35,17 +35,7 @@ public class TabLayoutStyleFragment extends BaseLazyFragment {
     private ArrayList<Fragment> mFragments = new ArrayList<>();
     private ArrayList<Fragment> mFragments2 = new ArrayList<>();
 
-    private int[] mIconUnselectIds = {
-            R.drawable.teb_home_off, R.drawable.teb_explore_off,
-            R.drawable.teb_explore_off, R.drawable.teb_me_off};
-    private int[] mIconSelectIds = {
-            R.drawable.teb_home_on, R.drawable.teb_explore_on,
-            R.drawable.teb_explore_on, R.drawable.teb_me_on};
-
-    private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
-
     private NestedScrollView mNestedScrollView;
-    private CommonTabLayout mCTabLayout;
     private SegmentTabLayout mTabLayout1,mTabLayout2,mTabLayout3,mTabLayout4;
     private SlidingTabLayout mSTabLayout1,mSTabLayout2,mSTabLayout3,mSTabLayout4,mSTabLayout5,mSTabLayout6,mSTabLayout7;
     private ViewPager mViewPager;
@@ -69,7 +59,6 @@ public class TabLayoutStyleFragment extends BaseLazyFragment {
         mSTabLayout6=rootView.findViewById(R.id.tl_92);
         mSTabLayout7=rootView.findViewById(R.id.tl_102);
         //
-        mCTabLayout=rootView.findViewById(R.id.tl_200);
         return rootView;
     }
 
@@ -84,10 +73,6 @@ public class TabLayoutStyleFragment extends BaseLazyFragment {
             mFragments2.add(SimpleCardFragment.getInstance("Switch Fragment " + title));
         }
 
-        for (int i = 0; i < mTitles_3.length; i++) {
-            mTabEntities.add(new TabEntity(mTitles_3[i], mIconSelectIds[i], mIconUnselectIds[i]));
-        }
-
         mTabLayout1.setTabData(mTitles);
         mTabLayout2.setTabData(mTitles_2);
         mTabLayout4.setTabData(mTitles_2);
@@ -100,8 +85,6 @@ public class TabLayoutStyleFragment extends BaseLazyFragment {
         setUpViewPager();
         mTabLayout3.showDot(1);
         //
-        mCTabLayout.setTabData(mTabEntities);
-        mCTabLayout.showDot(3);
     }
 
     private void setUpViewPager(){

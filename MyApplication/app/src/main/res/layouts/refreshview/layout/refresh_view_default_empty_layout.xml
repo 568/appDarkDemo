@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:background="#f1f1f1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!--common_icon_no_topic-->
+        <ImageView
+            android:id="@+id/list_empty_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:src="@mipmap/common_default_icon_daytime" />
+
+        <TextView
+            android:id="@+id/list_empty_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="26.6666666666666dp"
+            android:layout_marginTop="6.66666dp"
+            android:text="没有更多内容了~~"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <View
+            android:id="@+id/empty_supplement_view"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:visibility="gone" />
+
+    </LinearLayout>
+</LinearLayout>

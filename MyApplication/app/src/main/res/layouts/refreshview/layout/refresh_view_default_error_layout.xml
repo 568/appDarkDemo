@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/forum_no_net"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="#f1f1f1"
+    android:visibility="visible" >
+
+    <!-- 没有网络 -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="160dp"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/forum_no_net_head_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5.33dp"
+            android:layout_marginTop="18dp"
+            android:src="@mipmap/common_default_icon_daytime" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pull_to_refresh_net_error_2"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10.666dp"
+            android:text="@string/pull_to_refresh_net_error_1"
+            android:textColor="#999999"
+            android:textSize="15sp" />
+
+        <LinearLayout
+            android:id="@+id/lib_core_ui_forum_refresh"
+            android:layout_width="126dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="5.333dp"
+            android:background="@drawable/refreshview_reload_btn_select"
+            android:gravity="center"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:src="@drawable/ic_loading_rotate" />
+
+            <TextView
+                android:layout_marginLeft="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="10dp"
+                android:text="@string/pull_to_refresh_net_error_6"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="listview_header_hint_normal">向下拉动以更新～</string>
+    <string name="listview_header_hint_release">松手后刷新页面～</string>
+    <string name="listview_loading">loading...</string>
+    <string name="nomore_loading">no more to be loaded</string>
+    <string name="refreshing">refreshing...</string>
+    <string name="refresh_done">refresh done</string>
+    <string name="listview_header_last_time">last update：</string>
+
+    <string name="pull_to_refresh_no_more_data_label">没有更多内容了,逛逛其他的吧...</string>
+    <string name="pull_to_refresh_net_error_1">请检查网络重新加载</string>
+    <string name="pull_to_refresh_net_error_2">无网络联接</string>
+    <string name="pull_to_refresh_net_error_3">没有连接到网络</string>
+    <string name="pull_to_refresh_net_error_4">网络信号弱</string>
+    <string name="pull_to_refresh_net_error_5">网络连接超时</string>
+    <string name="pull_to_refresh_net_error_6">重新加载</string>
+</resources>
