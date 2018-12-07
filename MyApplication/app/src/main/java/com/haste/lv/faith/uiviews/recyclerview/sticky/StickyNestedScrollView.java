@@ -12,10 +12,17 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Created by lv on 18-12-6.
+ * 可以支持设置多个悬停。只需要在需要悬停的控件上设置tag属性，tag属性可以设置为：sticky、sticky-nonconstant、sticky-hastransparency
+ * <p>
+ * 注意：
+ * 如果内容比较多建议采用StickyNavLayout+Recyclerview来实现分页带有头部的列表悬停功能，
+ * StickyNestedScrollView+Recyclerview不能装载太多的数据特别是用于分页。
+ * 因为StickyNestedScrollView原理是把Recyclerview的滑动事件都转移给自己来处理，
+ * 这样Recyclerview的复用机制就会不起作用，数据过多容易OOM.单页面且数据量不多可以采用StickyNestedScrollView更简单。
  */
-
 public class StickyNestedScrollView extends NestedScrollView {
     public interface OnViewStickyListener {
 
@@ -155,6 +162,7 @@ public class StickyNestedScrollView extends NestedScrollView {
 
     private int downY;
     private int mTouchSlop;
+
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
         int action = e.getAction();

@@ -1,6 +1,8 @@
 package com.haste.lv.faith.ui.maintab;
 
 import android.app.Activity;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
@@ -18,8 +20,9 @@ import com.haste.lv.faith.ui.BaseLazyFragment;
 import com.haste.lv.faith.ui.maintab.adapter.TabMoreAdapter;
 import com.haste.lv.faith.ui.maintab.bean.SettingHeaderItem;
 import com.haste.lv.faith.ui.maintab.bean.SettingItem;
+import com.haste.lv.faith.ui.maintab.viewmodel.SettingViewModel;
 import com.haste.lv.faith.ui.maintab.views.PullZoomRecyclerView;
-import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
+import com.haste.lv.faith.uiviews.recyclerview.divider.XHorizontalDividerItemDecoration;
 import com.haste.lv.faith.utils.SharedPreferencesHelper;
 
 import java.util.ArrayList;
@@ -30,7 +33,8 @@ import java.util.ArrayList;
  */
 
 public class TabMoreFragment extends BaseLazyFragment implements View.OnClickListener {
-    PullZoomRecyclerView refreshRecyclerView;
+    private PullZoomRecyclerView refreshRecyclerView;
+    private SettingViewModel mSettingViewModel;
 
     @Nullable
     @Override
@@ -53,16 +57,46 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
     @Override
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
+        //观察者注册
+        mSettingViewModel= ViewModelProviders.of(this).get(SettingViewModel.class);
+        // 订阅LiveData中当前SettingItem数据变化
+        mSettingViewModel.getCurrentSettingData().observe(this, new Observer<SettingItem>() {
+            @Override
+            public void onChanged(@Nullable SettingItem settingItem) {
+                if (settingItem.isChecked){
+                    if (!SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
+                        SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", true);
+                        nightView = changeActNightMode(getActivity());
+                    }
+                }else{
+                    if (SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
+                        SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", false);
+                        removeActNightMode(getActivity(), nightView);
+                    }
+                }
+            }
+        });
+        //列表适配器设定
         ArrayList<SettingItem> dataList = new ArrayList<>();
         mTabMoreAdapter = new TabMoreAdapter(dataList, getContext());
-        mTabMoreAdapter.init(refreshRecyclerView);
-        SettingItem header = new SettingHeaderItem();
-        header.itemType = 100;
+        mTabMoreAdapter.init(refreshRecyclerView,mSettingViewModel);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         refreshRecyclerView.setAdapter(mTabMoreAdapter);
-        refreshRecyclerView.setLayoutManager(layoutManager);
-        mTabMoreAdapter.add(0, header);
+        refreshRecyclerView.setLayoutManagerAndDivider(layoutManager, new XHorizontalDividerItemDecoration.Builder(getContext()).color(0xffeaeaea).startSkipCount(1).build());
+        //页面列表数据
+        SettingItem header = new SettingHeaderItem();
+        header.itemType = 100;
+        SettingItem item1 = new SettingItem();
+        item1.itemType = 1;
+        item1.title = "夜间模式";
+        SettingItem item2 = new SettingItem();
+        item2.itemType = 2;
+        item2.title = "账号信息";
+
+        dataList.add(header);
+        dataList.add(item2);
+        dataList.add(item1);
     }
 
     @Override

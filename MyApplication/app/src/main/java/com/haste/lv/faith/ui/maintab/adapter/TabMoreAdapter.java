@@ -4,6 +4,9 @@ import android.content.Context;
 
 import com.haste.lv.faith.ui.maintab.bean.SettingItem;
 import com.haste.lv.faith.ui.maintab.itemdelegate.MineHeaderItemView;
+import com.haste.lv.faith.ui.maintab.itemdelegate.MineNorSwitchBtnItemView;
+import com.haste.lv.faith.ui.maintab.itemdelegate.MineNormalTitleItemView;
+import com.haste.lv.faith.ui.maintab.viewmodel.SettingViewModel;
 import com.haste.lv.faith.ui.maintab.views.PullZoomRecyclerView;
 import com.haste.lv.faith.uiviews.recyclerview.adapter.MultipleRecyclerViewAdapter;
 
@@ -20,7 +23,9 @@ public class TabMoreAdapter extends MultipleRecyclerViewAdapter<SettingItem> {
         super(mList, context);
 
     }
-    public void init(PullZoomRecyclerView zoomRecyclerView){
+    public void init(PullZoomRecyclerView zoomRecyclerView, SettingViewModel viewModel){
         addItemViewDelegate(new MineHeaderItemView(zoomRecyclerView));
+        addItemViewDelegate(new MineNorSwitchBtnItemView(viewModel));
+        addItemViewDelegate(new MineNormalTitleItemView());
     }
 }

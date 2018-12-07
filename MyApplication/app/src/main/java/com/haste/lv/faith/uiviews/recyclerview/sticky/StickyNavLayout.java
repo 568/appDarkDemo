@@ -27,11 +27,13 @@ import com.haste.lv.faith.R;
  * 1.比需为ViewPager或者其子类
  * 2.ViewPager的内容可以是Fragment,如果Fragment想用ListView,RecycleView等需要设置其id为:
  * android:id="@+id/id_stickynavlayout_innerscrollview"
+ * 3.如果XRecyclerview适配器中的某个item需要悬停，只需要将item布局设置 android:tag="sticky"即可实现item悬停，但是这样会有一个问题，
+ * 如果在xml中静态设置所有的item都会有悬停，可以在设配器中获取到item布局对象根据业务逻辑进行动态设置view.setTag("sticky");
  * <p/>
  * 参考资料：鸿洋大神的https://github.com/hongyangAndroid/Android-StickyNavLayout<br>
  */
 
-public class StickyNavLayout  extends LinearLayout implements NestedScrollingParent {
+public class StickyNavLayout extends LinearLayout implements NestedScrollingParent {
     private static final String TAG = "StickyNavLayout";
 
     @Override

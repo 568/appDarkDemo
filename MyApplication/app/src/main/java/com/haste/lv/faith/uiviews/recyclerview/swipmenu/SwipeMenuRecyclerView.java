@@ -15,6 +15,7 @@ import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
 /**
  * Created by lv on 18-12-6.
  * 自定义具有侧滑功能的Recyclerview侧滑菜单view
+ * 1.侧滑菜单对适配器没有特殊要求可以继承任意Adapter，但是对item的布局文件有要求，需要用SwipeMenuLayout。
  */
 
 public class SwipeMenuRecyclerView extends PullToRefreshRecyclerView{

@@ -8,4 +8,7 @@ import com.haste.lv.faith.domain.BaseData;
  */
 
 public class SettingItem extends BaseData {
+    public String title;
+    public String subTitle;
+    public boolean isChecked=false;
 }

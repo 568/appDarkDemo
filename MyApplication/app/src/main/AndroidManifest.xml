@@ -21,9 +21,12 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
+        android:resizeableActivity="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/DefaultAppTheme">
+        android:theme="@style/DefaultAppTheme"
+        tools:replace="android:allowBackup">
 
         <!-- 7.0api申请文件管理处理方式 -->
         <provider
@@ -36,7 +39,10 @@
                 android:resource="@xml/file_paths"
                 tools:replace="android:resource" />
         </provider>
-        <meta-data android:name="android.webkit.WebView.EnableSafeBrowsing" android:value="true"/>
+
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
         <meta-data
             android:name="UMENG_APPKEY"
             android:value="54470f0dfd98c5c2a60116f6" />

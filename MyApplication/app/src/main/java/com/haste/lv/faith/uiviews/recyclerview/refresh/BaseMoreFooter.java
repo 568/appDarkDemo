@@ -10,6 +10,10 @@ import android.widget.LinearLayout;
 
 /**
  * Created by lv on 18-12-6.
+ * 自定义加载更多View
+ * 步骤：
+ * 1.自定义view实现BaseMoreFooter接口；
+ * 2.调用setLoadingMoreFooter(IMoreFooter refreshHeader)即可。
  */
 
 public abstract class BaseMoreFooter extends LinearLayout implements IMoreFooter {

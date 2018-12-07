@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 /**
  * Created by lv on 18-12-6.
  * 定制了自定义头部动画基类
+ * 自定义下拉刷新View
+ * 步骤：
+ * 1.自定义view继承BaseRefreshHeader；
+ * 2.调用setRefreshHeader(IRefreshHeader refreshHeader)即可。
  */
 
 public abstract class BaseRefreshHeader extends LinearLayout implements IRefreshHeader {

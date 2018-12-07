@@ -9,9 +9,11 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
+import com.haste.lv.faith.uiviews.recyclerview.divider.FlexibleDividerDecoration;
 
 /**
  * Created by lv on 18-12-5.
+ * 带视差效果的视图
  */
 
 public class PullZoomRecyclerView extends PullZoomBaseView<PullToRefreshRecyclerView> {
@@ -47,6 +49,7 @@ public class PullZoomRecyclerView extends PullZoomBaseView<PullToRefreshRecycler
         PullToRefreshRecyclerView recyclerView = new PullToRefreshRecyclerView(context, attrs);
         //prevent id repeat
         recyclerView.setId(Integer.MIN_VALUE);
+        recyclerView.setPullRefreshEnabled(false);
         return recyclerView;
     }
 
@@ -104,7 +107,10 @@ public class PullZoomRecyclerView extends PullZoomBaseView<PullToRefreshRecycler
     public void setLayoutManager(RecyclerView.LayoutManager manager) {
         mWrapperView.setLayoutManager(manager);
     }
-
+    public void setLayoutManagerAndDivider(RecyclerView.LayoutManager manager,FlexibleDividerDecoration divider) {
+        mWrapperView.setLayoutManager(manager);
+        mWrapperView.addItemDecoration(divider);
+    }
     public void setSmoothToTopInterpolator(Interpolator sSmoothToTopInterpolator) {
         this.sSmoothToTopInterpolator = sSmoothToTopInterpolator;
     }

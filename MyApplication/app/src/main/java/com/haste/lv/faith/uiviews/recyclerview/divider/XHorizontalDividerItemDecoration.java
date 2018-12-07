@@ -9,7 +9,7 @@ import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
  * Created by lv on 18-12-6.
  * 垂直滑动水平分割线设置  - LinearLayoutManager</p>
  * XHorizontalDividerItemDecoration 主要是针对使用
- * @linkPullToRefreshRecyclerView
+ * @link PullToRefreshRecyclerView
  * 做了处理，添加的头和尾会自动没有分割线
  */
 
