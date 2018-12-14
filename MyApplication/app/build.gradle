@@ -30,7 +30,7 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'src/main/AndroidManifest.xml'
-            java.srcDirs = ['src/main','src/main/java']
+            java.srcDirs = ['src/main', 'src/main/java']
             resources.srcDirs = ['src', 'src/main/resources', 'src/main/resources/xml']
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
@@ -133,27 +133,48 @@ android {
     //过程中产生多个具有自己特性配置的版本。
     //上面这个配置的作用就是，为每个渠道包产生不同的 UMENG_CHANNEL_VALUE 的值。
 }
+configurations.all {
+    //由于各个依赖库中版本不一致，有时会导致一些异常情况，故强制使用同一版本
+    resolutionStrategy {
+        force 'com.android.support:appcompat-v7:28.0.0'
+        force "com.android.support:design:28.0.0"
+        force "com.android.support:support-vector-drawable:28.0.0"
+    }
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:support-annotations:28.0.0'
+    implementation 'com.android.support:support-compat:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'com.android.support:multidex:1.0.1'
     //dangerous permission
-    implementation ('pub.devrel:easypermissions:2.0.0'){
+    implementation('pub.devrel:easypermissions:2.0.0') {
         exclude module: 'appcompat-v7'
     }
-    //
+    //network
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
     compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+    compile 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.12'
-    //
-    implementation ("android.arch.lifecycle:extensions:1.1.1"){
+    //Google LiveData和ViewModel组件
+    implementation("android.arch.lifecycle:extensions:1.1.1") {
         exclude module: 'appcompat-v7'
+    }
+    annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+    //rx管理View的生命周期
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
+    compile ('com.trello.rxlifecycle2:rxlifecycle-components:2.1.0')
+    //material-dialogs
+
+    //多功能的视频播放器 'appcompat-v7', 'support-annotations','support-compat'
+    implementation ('com.shuyu:GSYVideoPlayer:6.0.1'){
+        exclude group: 'com.android.support'
     }
     //
     testImplementation 'junit:junit:4.12'

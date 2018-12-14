@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haste.lv.faith.R;
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 
 /**
  * Created by lv on 18-11-30.
  */
 
-public class TabDiscoveryFragment extends BaseLazyFragment {
+public class TabDiscoveryFragment extends BaseLazyRxFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -24,5 +24,10 @@ public class TabDiscoveryFragment extends BaseLazyFragment {
     @Override
     public void loadData(long id) {
 
+    }
+
+    @Override
+    protected boolean useLoadManager() {
+        return false;
     }
 }

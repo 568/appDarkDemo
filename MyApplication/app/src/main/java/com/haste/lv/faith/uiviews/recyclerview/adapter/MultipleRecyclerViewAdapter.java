@@ -12,6 +12,8 @@ import java.util.List;
  * Created by lv on 18-12-6.
  * 多样式的recyclerView列表适配器
  * 1.把样式列表通过代理来进行管理
+ *
+ * setLayoutManager()必须放在setAdapter之前
  */
 
 public class MultipleRecyclerViewAdapter<T> extends HelperStateRecyclerViewAdapter<T> {

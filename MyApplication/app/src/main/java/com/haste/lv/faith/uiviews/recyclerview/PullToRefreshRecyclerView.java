@@ -38,6 +38,48 @@ import java.util.List;
  * setPullRefreshEnabled(boolean): //是否可以上拉刷新<br/>
  * setRefreshHeader(ArrowRefreshHeader): void<br/>
  * setRefreshProgressStyle(int): //设置刷新动画样式<br/>
+ * <p>
+ * 使用方法介绍
+ * //刷新方式二选一：方式一or方式二
+ * //方式一：采用库中提供的默认刷新样式
+ * mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader); //设置下拉刷新Progress的样式,在ProgressStyle里面选择喜欢的样式
+ * mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);//设置下拉刷新箭头
+ * mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallPulse);  //设置加载更多Progress的样式
+ * mRecyclerView.setFootViewText("拼命加载中","已经全部");
+ * <p>
+ * //方式二：完全采用自定义的刷新动画
+ * //mRecyclerView.setRefreshHeader(new CustomRefreshHeader(this));
+ * //mRecyclerView.setLoadingMoreFooter(new CustomLoadingMoreFooter(this));
+ * <p>
+ * //打开刷新和加载更多
+ * //mRecyclerView.setPullRefreshEnabled(true);
+ * //mRecyclerView.setLoadingMoreEnabled(true);
+ * <p>
+ * //添加一个头部view和尾部view
+ * View headerView =   LayoutInflater.from(this).inflate(R.layout.layout_header, (ViewGroup)findViewById(android.R.id.content),false);
+ * View footerView = getLayoutInflater().inflate(R.layout.layout_footer, (ViewGroup) mRecyclerView.getParent(), false);
+ * mRecyclerView.addHeaderView(headerView);
+ * mRecyclerView.addFooterView(footerView);
+ * <p>
+ * //分割线设置
+ * mRecyclerView.addItemDecoration(new HorizontalDividerItemDecoration.Builder(this).build());
+ * <p>
+ * //移除添加的头部view
+ * mRecyclerView.removeHeaderView(headerView);
+ * //移除添加的尾部view
+ * mRecyclerView.removeFooterView(footerView);
+ * mRecyclerView.setLoadingListener(new LoadingListener() {
+ *
+ * @Override public void onRefresh() {
+ * //下拉刷新
+ * //mRecyclerView.refreshComplete();//刷新动画完成
+ * }
+ * @Override public void onLoadMore() {
+ * //加载更多
+ * //mRecyclerView.loadMoreComplete();//加载动画完成
+ * //mRecyclerView.setNoMore(true);//数据加载完成
+ * }
+ * });
  */
 
 public class PullToRefreshRecyclerView extends RecyclerView {
@@ -416,6 +458,7 @@ public class PullToRefreshRecyclerView extends RecyclerView {
     }
 
     float y1, y2;
+
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         if (mLastY == -1) {

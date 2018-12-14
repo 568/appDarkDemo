@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.view.ViewGroup;
 
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,11 @@ import java.util.List;
  */
 
 public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
-    private List<BaseLazyFragment> mFragments;
+    private List<BaseLazyRxFragment> mFragments;
     private FragmentManager fragmentManager;
     private List<String> tags;
     String[] pageTitles;
-    public BaseFragmentPagerAdapter(FragmentManager fm, List<BaseLazyFragment> fragments,String[] titles) {
+    public BaseFragmentPagerAdapter(FragmentManager fm, List<BaseLazyRxFragment> fragments,String[] titles) {
         super(fm);
         this.tags = new ArrayList<>();
         this.fragmentManager = fm;
@@ -29,7 +29,7 @@ public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
         this.pageTitles=titles;
     }
 
-    public void setNewFragments(List<BaseLazyFragment> fragments) {
+    public void setNewFragments(List<BaseLazyRxFragment> fragments) {
         if (this.tags != null) {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             for (int i = 0; i < tags.size(); i++) {
@@ -43,7 +43,7 @@ public class BaseFragmentPagerAdapter extends FragmentPagerAdapter {
         notifyDataSetChanged();
     }
 
-    public List<BaseLazyFragment> getFragments() {
+    public List<BaseLazyRxFragment> getFragments() {
         return mFragments;
     }
 

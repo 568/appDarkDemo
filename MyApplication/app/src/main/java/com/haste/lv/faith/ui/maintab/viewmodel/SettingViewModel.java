@@ -1,5 +1,6 @@
 package com.haste.lv.faith.ui.maintab.viewmodel;
 
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 

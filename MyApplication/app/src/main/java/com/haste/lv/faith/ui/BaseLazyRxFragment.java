@@ -2,16 +2,28 @@ package com.haste.lv.faith.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.View;
+
+import com.haste.lv.faith.mvpvm.loadstatus.BaseViewStateControl;
+import com.haste.lv.faith.mvpvm.loadstatus.LoadState;
+import com.haste.lv.faith.mvpvm.loadstatus.LoadStateManager;
+import com.haste.lv.faith.mvpvm.view.stateview.ErrorState;
+import com.haste.lv.faith.mvpvm.view.stateview.LoadingState;
+import com.trello.rxlifecycle2.components.support.RxFragment;
 
 /**
  * Created by lv on 18-11-30.
  * 懒加载
+ * 使用说明：
+ * 1.onFragmentFirstVisible页面的首次显示就会调用(首次包含了销毁重新创建)，这个方法会调用一次，可以用来做些初始化和savedInstanceState保存等
+ * 2.设置是否使用 view 的复用，默认开启
+ * 3.通过设置useLoadManager()确定是否使用状态页面，getContentResId()返回的是需要显示状态页面的第一个子view的id,这样会在它父视图位置添加新的FrameLayout
+ * 4.关于状态页面的自定义可以继承BaseViewStateControl，自定义样式，然后调用mLoadStateManager.showStateView(...)方法即可显示
+ * 5.默认有统一的ErrorState和LoadingState两种状态页面
  */
-
-public abstract class BaseLazyFragment extends Fragment {
+public abstract class BaseLazyRxFragment extends RxFragment {
     public abstract void loadData(long id);
+
     //
     private boolean isFragmentVisible;
     private boolean isReuseView;
@@ -59,6 +71,18 @@ public abstract class BaseLazyFragment extends Fragment {
         //保证onFragmentVisibleChange()的回调发生在rootView创建完成之后，以便支持ui操作
         if (rootView == null) {
             rootView = view;
+            if (useLoadManager()) {
+                View contentLayout = rootView.findViewById(getContentResId());
+                mLoadStateManager = new LoadStateManager.Builder()
+                        .setViewParams(contentLayout == null ? rootView : contentLayout)
+                        .setListener(new BaseViewStateControl.OnViewRefreshListener() {
+                            @Override
+                            public void onRefresh(View v) {
+                                onStateRefresh();
+                            }
+                        })
+                        .build(getStateBuilder());
+            }
             if (getUserVisibleHint()) {
                 if (isFirstVisible) {
                     onFragmentFirstVisible();
@@ -128,4 +152,31 @@ public abstract class BaseLazyFragment extends Fragment {
     protected boolean isFragmentVisible() {
         return isFragmentVisible;
     }
+
+    /**
+     * 加载页面状态的view资源的id
+     */
+    public int getContentResId() {
+        return 0;
+    }
+
+    protected void onStateRefresh() {
+
+    }
+
+    /**
+     * 是否使用LoadManager
+     */
+    protected boolean useLoadManager() {
+        return false;
+    }
+
+    /*如果有新定义的状态页面，重写此方法进行注册*/
+    protected LoadState.Builder getStateBuilder() {
+        return LoadState.newInstance().getBuilder()
+                .register(new LoadingState())
+                .register(new ErrorState());
+    }
+
+    protected LoadStateManager mLoadStateManager;
 }

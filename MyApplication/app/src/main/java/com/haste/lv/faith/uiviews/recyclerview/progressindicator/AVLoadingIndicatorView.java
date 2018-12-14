@@ -3,10 +3,12 @@ package com.haste.lv.faith.uiviews.recyclerview.progressindicator;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.support.annotation.IntDef;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +44,7 @@ import com.haste.lv.faith.uiviews.recyclerview.progressindicator.indicator.Pacma
 import com.haste.lv.faith.uiviews.recyclerview.progressindicator.indicator.SemiCircleSpinIndicator;
 import com.haste.lv.faith.uiviews.recyclerview.progressindicator.indicator.SquareSpinIndicator;
 import com.haste.lv.faith.uiviews.recyclerview.progressindicator.indicator.TriangleSkewSpinIndicator;
+import com.haste.lv.faith.utils.DisplayUtil;
 
 /**
  * Created by lv on 18-12-6.
@@ -80,7 +83,7 @@ public class AVLoadingIndicatorView extends View {
     public static final int SemiCircleSpin = 27;
     public static final int ClifeIndicator = 28;
 
-    @IntDef(flag = true,value = {BallPulse,
+    @IntDef(flag = true, value = {BallPulse,
             BallGridPulse,
             BallClipRotate,
             BallClipRotatePulse,
@@ -107,9 +110,10 @@ public class AVLoadingIndicatorView extends View {
             TriangleSkewSpin,
             Pacman,
             BallGridBeat,
-            SemiCircleSpin,ClifeIndicator})
+            SemiCircleSpin, ClifeIndicator})
     public @interface Indicator {
     }
+
     public static final int DEFAULT_SIZE = 30;
 
     //attrs
@@ -124,13 +128,11 @@ public class AVLoadingIndicatorView extends View {
 
 
     public AVLoadingIndicatorView(Context context) {
-        super(context);
-        init(null, 0);
+        this(context, null);
     }
 
     public AVLoadingIndicatorView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(attrs, 0);
+        this(context, attrs, 0);
     }
 
     public AVLoadingIndicatorView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -149,11 +151,20 @@ public class AVLoadingIndicatorView extends View {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.AVLoadingIndicatorView);
         mIndicatorId = a.getInt(R.styleable.AVLoadingIndicatorView_indicator, BallPulse);
         mIndicatorColor = a.getColor(R.styleable.AVLoadingIndicatorView_indicator_color, Color.WHITE);
+        String indicatorName = a.getString(R.styleable.AVLoadingIndicatorView_indicator);
+        if (!TextUtils.isEmpty(indicatorName)) {
+            setIndicator(indicatorName);
+        }
         a.recycle();
         mPaint = new Paint();
         mPaint.setColor(mIndicatorColor);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
+
+        if (mIndicatorController != null) {
+            //这里表示外部通过类名实例化样式的
+            mIndicatorId = -1;
+        }
         applyIndicator();
     }
 
@@ -166,6 +177,48 @@ public class AVLoadingIndicatorView extends View {
         mIndicatorColor = color;
         mPaint.setColor(mIndicatorColor);
         this.invalidate();
+    }
+
+    /**
+     * You should pay attention to pass this parameter with two way:
+     * for example:
+     * 1. Only class Name,like "SimpleIndicator".(This way would use default package name with
+     * "com.wang.avi.indicators")
+     * 2. Class name with full package,like "com.my.android.indicators.SimpleIndicator".
+     *
+     * @param indicatorName the class must be extend Indicator .
+     */
+    public void setIndicator(String indicatorName) {
+        if (TextUtils.isEmpty(indicatorName)) {
+            return;
+        }
+        StringBuilder drawableClassName = new StringBuilder();
+        if (!indicatorName.contains(".")) {
+            String defaultPackageName = getClass().getPackage().getName();
+            drawableClassName.append(defaultPackageName)
+                    .append(".indicators")
+                    .append(".");
+        }
+        drawableClassName.append(indicatorName);
+        try {
+            Class<?> drawableClass = Class.forName(drawableClassName.toString());
+            BaseIndicatorController indicator = (BaseIndicatorController) drawableClass.newInstance();
+            setIndicator(indicator);
+        } catch (ClassNotFoundException e) {
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setIndicator(BaseIndicatorController d) {
+        if (mIndicatorController != d) {
+            mIndicatorController = d;
+            //need to set indicator color again if you didn't specified when you update the indicator .
+            setIndicatorColor(mIndicatorColor);
+            postInvalidate();
+        }
     }
 
     private void applyIndicator() {
@@ -262,4 +315,73 @@ public class AVLoadingIndicatorView extends View {
         }
         mIndicatorController.setTarget(this);
     }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int width = measureDimension(DisplayUtil.dp2px(DEFAULT_SIZE), widthMeasureSpec);
+        int height = measureDimension(DisplayUtil.dp2px(DEFAULT_SIZE), heightMeasureSpec);
+        setMeasuredDimension(width, height);
+    }
+
+    private int measureDimension(int defaultSize, int measureSpec) {
+        int result;
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+        if (specMode == MeasureSpec.EXACTLY) {
+            result = specSize;
+        } else if (specMode == MeasureSpec.AT_MOST) {
+            result = Math.min(defaultSize, specSize);
+        } else {
+            result = defaultSize;
+        }
+        return result;
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        drawIndicator(canvas);
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        if (!mHasAnimation) {
+            mHasAnimation = true;
+            applyAnimation();
+        }
+    }
+
+    @Override
+    public void setVisibility(int v) {
+        if (getVisibility() != v) {
+            super.setVisibility(v);
+            if (v == GONE || v == INVISIBLE) {
+                mIndicatorController.setAnimationStatus(BaseIndicatorController.AnimStatus.END);
+            } else {
+                mIndicatorController.setAnimationStatus(BaseIndicatorController.AnimStatus.START);
+            }
+        }
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        mIndicatorController.setAnimationStatus(BaseIndicatorController.AnimStatus.CANCEL);
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mIndicatorController.setAnimationStatus(BaseIndicatorController.AnimStatus.START);
+    }
+
+    void drawIndicator(Canvas canvas) {
+        mIndicatorController.draw(canvas, mPaint);
+    }
+
+    void applyAnimation() {
+        mIndicatorController.initAnimation();
+    }
+
 }

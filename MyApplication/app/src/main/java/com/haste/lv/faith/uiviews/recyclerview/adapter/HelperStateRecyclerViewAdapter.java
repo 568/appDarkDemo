@@ -16,6 +16,8 @@ import java.util.List;
 /**
  * Created by lv on 18-12-6.
  * 提供便捷操作,可设置状态的错误页面、空页面、加载中页面、内容页面自由切换
+ *
+ * setLayoutManager()必须放在setAdapter之前
  */
 
 public abstract class HelperStateRecyclerViewAdapter <T> extends HelperRecyclerViewAdapter<T> {

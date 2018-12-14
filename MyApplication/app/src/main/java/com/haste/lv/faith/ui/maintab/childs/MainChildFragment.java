@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.haste.lv.faith.R;
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import java.util.List;
  * Created by lv on 18-11-30.
  */
 
-public class MainChildFragment extends BaseLazyFragment implements SwipeRefreshLayout.OnRefreshListener {
+public class MainChildFragment extends BaseLazyRxFragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mRefreshLayout;
     protected RecyclerView mRecylerView;
     protected LinearLayoutManager mManager;

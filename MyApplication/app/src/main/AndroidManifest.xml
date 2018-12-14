@@ -64,6 +64,9 @@
         <activity
             android:name="com.haste.lv.faith.FirstActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".mvpvm.base.ContainerActivity"
+            android:launchMode="standard" />
     </application>
 
 </manifest>

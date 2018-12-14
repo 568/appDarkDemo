@@ -12,11 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.haste.lv.faith.R;
-import com.haste.lv.faith.ui.BaseLazyFragment;
-import com.haste.lv.faith.uiviews.tablayout.CommonTabLayout;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout;
 import com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout;
-import com.haste.lv.faith.uiviews.tablayout.listener.CustomTabEntity;
 import com.haste.lv.faith.uiviews.tablayout.listener.OnTabSelectListener;
 
 import java.util.ArrayList;
@@ -27,7 +25,7 @@ import java.util.ArrayList;
  * 注：1.页面的设计基点，仅仅是为了展示而已
  */
 
-public class TabLayoutStyleFragment extends BaseLazyFragment {
+public class TabLayoutStyleFragment extends BaseLazyRxFragment {
     private String[] mTitles = {"首页", "消息"};
     private String[] mTitles_2 = {"首页", "消息", "联系人"};
     private String[] mTitles_3 = {"首页", "消息", "联系人", "更多"};

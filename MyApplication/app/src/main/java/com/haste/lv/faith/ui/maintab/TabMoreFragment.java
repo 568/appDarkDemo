@@ -16,12 +16,15 @@ import android.view.WindowManager;
 
 import com.haste.lv.faith.FirstActivity;
 import com.haste.lv.faith.R;
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.mvpvm.base.BaseAbsLifecycleFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.ui.maintab.adapter.TabMoreAdapter;
 import com.haste.lv.faith.ui.maintab.bean.SettingHeaderItem;
 import com.haste.lv.faith.ui.maintab.bean.SettingItem;
+import com.haste.lv.faith.ui.maintab.childs.AboutFragment;
 import com.haste.lv.faith.ui.maintab.viewmodel.SettingViewModel;
 import com.haste.lv.faith.ui.maintab.views.PullZoomRecyclerView;
+import com.haste.lv.faith.uiviews.recyclerview.adapter.BaseRecyclerViewAdapter;
 import com.haste.lv.faith.uiviews.recyclerview.divider.XHorizontalDividerItemDecoration;
 import com.haste.lv.faith.utils.SharedPreferencesHelper;
 
@@ -32,7 +35,7 @@ import java.util.ArrayList;
  * 更多tab
  */
 
-public class TabMoreFragment extends BaseLazyFragment implements View.OnClickListener {
+public class TabMoreFragment extends BaseAbsLifecycleFragment implements View.OnClickListener {
     private PullZoomRecyclerView refreshRecyclerView;
     private SettingViewModel mSettingViewModel;
 
@@ -41,9 +44,6 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maintab_my_layout, container, false);
         refreshRecyclerView = view.findViewById(R.id.recyclerview_content);
-        view.findViewById(R.id.close_dark_btn).setOnClickListener(this);
-        view.findViewById(R.id.open_dark_btn).setOnClickListener(this);
-        view.findViewById(R.id.open_first_act_btn).setOnClickListener(this);
         return view;
     }
 
@@ -58,17 +58,17 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         //观察者注册
-        mSettingViewModel= ViewModelProviders.of(this).get(SettingViewModel.class);
+        mSettingViewModel = ViewModelProviders.of(this).get(SettingViewModel.class);
         // 订阅LiveData中当前SettingItem数据变化
         mSettingViewModel.getCurrentSettingData().observe(this, new Observer<SettingItem>() {
             @Override
             public void onChanged(@Nullable SettingItem settingItem) {
-                if (settingItem.isChecked){
+                if (settingItem.isChecked) {
                     if (!SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
                         SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", true);
                         nightView = changeActNightMode(getActivity());
                     }
-                }else{
+                } else {
                     if (SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
                         SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", false);
                         removeActNightMode(getActivity(), nightView);
@@ -79,11 +79,22 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
         //列表适配器设定
         ArrayList<SettingItem> dataList = new ArrayList<>();
         mTabMoreAdapter = new TabMoreAdapter(dataList, getContext());
-        mTabMoreAdapter.init(refreshRecyclerView,mSettingViewModel);
+        mTabMoreAdapter.init(refreshRecyclerView, mSettingViewModel);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         refreshRecyclerView.setAdapter(mTabMoreAdapter);
         refreshRecyclerView.setLayoutManagerAndDivider(layoutManager, new XHorizontalDividerItemDecoration.Builder(getContext()).color(0xffeaeaea).startSkipCount(1).build());
+        mTabMoreAdapter.setOnItemClickListener(new BaseRecyclerViewAdapter.OnItemClickListener<SettingItem>() {
+            @Override
+            public void onItemClick(View view, SettingItem item, int position) {
+                if (position == 1) {
+                    Intent intent = new Intent(getContext(), FirstActivity.class);
+                    startActivity(intent);
+                } else if (position == 3) {
+                    startContainerActivity(AboutFragment.class.getCanonicalName());
+                }
+            }
+        });
         //页面列表数据
         SettingItem header = new SettingHeaderItem();
         header.itemType = 100;
@@ -94,28 +105,18 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
         item2.itemType = 2;
         item2.title = "账号信息";
 
+        SettingItem item3 = new SettingItem();
+        item3.itemType = 2;
+        item3.title = "关于我们";
+
         dataList.add(header);
         dataList.add(item2);
         dataList.add(item1);
+        dataList.add(item3);
     }
 
     @Override
     public void onClick(View view) {
-        final int id = view.getId();
-        if (id == R.id.open_dark_btn) {
-            if (!SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
-                SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", true);
-                nightView = changeActNightMode(getActivity());
-            }
-        } else if (id == R.id.close_dark_btn) {
-            if (SharedPreferencesHelper.getBoolean("APP_NIGHT_MODE", false)) {
-                SharedPreferencesHelper.applyBoolean("APP_NIGHT_MODE", false);
-                removeActNightMode(getActivity(), nightView);
-            }
-        } else if (id == R.id.open_first_act_btn) {
-            Intent intent = new Intent(getContext(), FirstActivity.class);
-            startActivity(intent);
-        }
     }
 
     View nightView;
@@ -143,5 +144,10 @@ public class TabMoreFragment extends BaseLazyFragment implements View.OnClickLis
             return;
         WindowManager mWindowManager = activity.getWindowManager();// (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         mWindowManager.removeViewImmediate(view);
+    }
+
+    @Override
+    protected boolean useLoadManager() {
+        return false;
     }
 }

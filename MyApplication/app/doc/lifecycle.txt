@@ -1,0 +1,10 @@
+
+
+第一 LifecycleObserver、LifecycleOwner
+1.SupportActivity
+  1）LifecycleRegistry mLifecycleRegistry = new LifecycleRegistry(this);
+  2）OnCreate(): ReportFragment.injectIfNeededIn(this);
+2. annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
+   这个配置就是告诉编译器在编译阶段调用lifecycle:compiler库的逻辑生成我们想要的文件
+   包名和我们项目的包名保持一致，项目中，我们果断没有声明这个类，注解框架apt帮我们生成这个类.
+   本应用在IModel实现了LifecycleObserver ,在build/source/apt/.../com.haste.lv.faith.mvpvm.model/IModel_LifecycleAdapter

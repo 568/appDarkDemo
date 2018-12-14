@@ -5,7 +5,7 @@ import android.support.v4.view.ViewPager;
 
 import com.haste.lv.faith.adapters.BaseFragmentPagerAdapter;
 import com.haste.lv.faith.core.HFBaseActivity;
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.ui.maintab.TabDiscoveryFragment;
 import com.haste.lv.faith.ui.maintab.TabMainFragment;
 import com.haste.lv.faith.ui.maintab.TabMoreFragment;
@@ -62,7 +62,7 @@ public class MainActivity extends HFBaseActivity {
             public void onPageScrollStateChanged(int state) {
             }
         });
-        List<BaseLazyFragment> fragments = new ArrayList<>();
+        List<BaseLazyRxFragment> fragments = new ArrayList<>();
         fragments.add(new TabMainFragment());
         fragments.add(new TabVideoFragment());
         fragments.add(new TabDiscoveryFragment());

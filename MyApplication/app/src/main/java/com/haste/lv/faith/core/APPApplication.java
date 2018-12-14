@@ -29,7 +29,7 @@ public class APPApplication extends Application {
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle bundle) {
-
+                AppManager.getAppManager().addActivity(activity);
             }
 
             @Override
@@ -63,6 +63,7 @@ public class APPApplication extends Application {
                 if (nightModeHashMap.containsKey(activity)) {
                     nightModeHashMap.remove(activity);
                 }
+                AppManager.getAppManager().removeActivity(activity);
             }
         });
     }

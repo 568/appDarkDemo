@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.adapters.BaseFragmentPagerAdapter;
-import com.haste.lv.faith.ui.BaseLazyFragment;
+import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.ui.maintab.childs.MainChildFragment;
 import com.haste.lv.faith.ui.maintab.childs.TabLayoutStyleFragment;
 import com.haste.lv.faith.ui.maintab.mainbehavior.HeadStateViewPager;
@@ -23,11 +23,11 @@ import java.util.List;
  * Created by lv on 18-11-30.
  */
 
-public class TabMainFragment extends BaseLazyFragment implements MainBehaviorHelper.onHeadstateListener, OnTabSelectListener {
+public class TabMainFragment extends BaseLazyRxFragment implements MainBehaviorHelper.onHeadstateListener, OnTabSelectListener {
     SlidingTabLayout mTab;
     HeadStateViewPager mViewpager;
 
-    private List<BaseLazyFragment> mFragments;
+    private List<BaseLazyRxFragment> mFragments;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -52,6 +52,11 @@ public class TabMainFragment extends BaseLazyFragment implements MainBehaviorHel
             }
         });
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
@@ -90,7 +95,7 @@ public class TabMainFragment extends BaseLazyFragment implements MainBehaviorHel
 
     @Override
     public void onHeadIsOpen(boolean state) {
-        for (BaseLazyFragment u : mFragments) {
+        for (BaseLazyRxFragment u : mFragments) {
             if (u instanceof MainChildFragment) {
                 ((MainChildFragment) u).setHeadState(!state);
             }else if (u instanceof TabLayoutStyleFragment){
@@ -111,5 +116,10 @@ public class TabMainFragment extends BaseLazyFragment implements MainBehaviorHel
     @Override
     public void onTabReselect(int position) {
 
+    }
+
+    @Override
+    protected boolean useLoadManager() {
+        return false;
     }
 }

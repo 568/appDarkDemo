@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView;
+import com.haste.lv.faith.utils.DisplayUtil;
 
 /**
  * Created by lv on 18-12-6.
@@ -33,9 +34,10 @@ public class LoadingMoreFooter extends BaseMoreFooter {
         progressCon = new SimpleViewSwitcher(getContext());
         progressCon.setLayoutParams(new ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
+        progressCon.getLayoutParams().width= DisplayUtil.dp2px(18);
+        progressCon.getLayoutParams().height= DisplayUtil.dp2px(18);
         AVLoadingIndicatorView progressView = new AVLoadingIndicatorView(getContext());
-        progressView.setIndicatorColor(0xffB5B5B5);
+        progressView.setIndicatorColor(0xff3cd3db);
         progressView.setIndicatorId(ProgressStyle.BallSpinFadeLoader);
         progressCon.setView(progressView);
 
@@ -56,7 +58,7 @@ public class LoadingMoreFooter extends BaseMoreFooter {
             progressCon.setView(new ProgressBar(getContext(), null, android.R.attr.progressBarStyle));
         } else {
             AVLoadingIndicatorView progressView = new AVLoadingIndicatorView(this.getContext());
-            progressView.setIndicatorColor(0xffB5B5B5);
+            progressView.setIndicatorColor(0xff3cd3db);
             progressView.setIndicatorId(style);
             progressCon.setView(progressView);
         }
