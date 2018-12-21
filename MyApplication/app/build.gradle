@@ -34,10 +34,11 @@ android {
             resources.srcDirs = ['src', 'src/main/resources', 'src/main/resources/xml']
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
-            res.srcDirs = ['res', 'src/main/res', 'src/main/res/xml'
+            res.srcDirs = [ 'src/main/res', 'src/main/res/xml'
                            , 'src/main/res/layouts', 'src/main/res/layouts/tablayout'
                            , 'src/main/res/layouts/toastlayout'
                            , 'src/main/res/layouts/refreshview'
+                           , 'src/main/res/layouts/videoplayer'
             ]
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['jniLibs']
@@ -137,8 +138,9 @@ configurations.all {
     //由于各个依赖库中版本不一致，有时会导致一些异常情况，故强制使用同一版本
     resolutionStrategy {
         force 'com.android.support:appcompat-v7:28.0.0'
-        force "com.android.support:design:28.0.0"
-        force "com.android.support:support-vector-drawable:28.0.0"
+        force 'com.android.support:design:28.0.0'
+        force 'com.android.support:support-vector-drawable:28.0.0'
+        force 'com.android.support:recyclerview-v7:28.0.0'
     }
 }
 
@@ -176,6 +178,16 @@ dependencies {
     implementation ('com.shuyu:GSYVideoPlayer:6.0.1'){
         exclude group: 'com.android.support'
     }
+    //流式布局
+    implementation ('com.google.android:flexbox:1.0.0'){
+        exclude group: 'com.android.support',module:'recyclerview-v7'
+        exclude group: 'com.android.support', module:'appcompat-v7'
+        exclude group: 'com.android.support', module:'support-annotations'
+    }
+    //图片加载
+    compile 'com.facebook.rebound:rebound:0.3.8'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
     //
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'

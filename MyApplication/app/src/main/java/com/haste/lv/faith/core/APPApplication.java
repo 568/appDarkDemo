@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.support.multidex.MultiDex;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.haste.lv.faith.utils.SharedPreferencesHelper;
+import com.shuyu.gsyvideoplayer.utils.Debuger;
 
 import java.util.WeakHashMap;
 
@@ -24,6 +26,7 @@ public class APPApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        MultiDex.install(this);
         instance=getApplicationContext();
         SharedPreferencesHelper.init(getApplicationContext(), "app_globle_sp");
         registerActivityLifecycleCallbacks(new ActivityLifecycleCallbacks() {
@@ -66,6 +69,8 @@ public class APPApplication extends Application {
                 AppManager.getAppManager().removeActivity(activity);
             }
         });
+        //
+        Debuger.enable();
     }
 
     public static Context getContext(){

@@ -2,12 +2,10 @@ package com.haste.lv.faith.mvpvm.view.stateview;
 
 import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.mvpvm.loadstatus.BaseViewStateControl;
 import com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView;
-import com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView2;
 import com.haste.lv.faith.uiviews.recyclerview.refresh.ProgressStyle;
 import com.haste.lv.faith.uiviews.recyclerview.refresh.SimpleViewSwitcher;
 

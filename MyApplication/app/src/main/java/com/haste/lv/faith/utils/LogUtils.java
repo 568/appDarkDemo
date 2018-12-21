@@ -8,7 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 /**
  * Created by lv on 18-12-11.
- * 打印日志的统一处理s
+ * 打印日志的统一处理
  */
 
 public class LogUtils {

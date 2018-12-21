@@ -12,9 +12,6 @@ import com.haste.lv.faith.R;
 import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
 import com.haste.lv.faith.uiviews.recyclerview.adapter.MultipleRecyclerViewAdapter;
 import com.haste.lv.faith.uiviews.recyclerview.refresh.CustomRefreshHeader;
-import com.haste.lv.faith.uiviews.recyclerview.refresh.ProgressStyle;
-
-import java.util.ArrayList;
 
 /**
  * Created by lv on 18-12-13.

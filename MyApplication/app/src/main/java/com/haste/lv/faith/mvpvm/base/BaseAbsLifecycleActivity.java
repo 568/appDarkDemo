@@ -147,4 +147,14 @@ public class BaseAbsLifecycleActivity<T extends BaseViewModel> extends AbsLifecy
     public void initViewObservable() {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mViewModel) {
+            getLifecycle().removeObserver(mViewModel);
+            mViewModel.removeRxBus();
+            mViewModel = null;
+        }
+    }
 }

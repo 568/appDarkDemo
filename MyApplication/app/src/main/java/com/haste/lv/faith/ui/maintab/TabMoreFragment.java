@@ -24,6 +24,7 @@ import com.haste.lv.faith.ui.maintab.bean.SettingItem;
 import com.haste.lv.faith.ui.maintab.childs.AboutFragment;
 import com.haste.lv.faith.ui.maintab.viewmodel.SettingViewModel;
 import com.haste.lv.faith.ui.maintab.views.PullZoomRecyclerView;
+import com.haste.lv.faith.ui.video.VideoDetailsActivity;
 import com.haste.lv.faith.uiviews.recyclerview.adapter.BaseRecyclerViewAdapter;
 import com.haste.lv.faith.uiviews.recyclerview.divider.XHorizontalDividerItemDecoration;
 import com.haste.lv.faith.utils.SharedPreferencesHelper;
@@ -92,6 +93,9 @@ public class TabMoreFragment extends BaseAbsLifecycleFragment implements View.On
                     startActivity(intent);
                 } else if (position == 3) {
                     startContainerActivity(AboutFragment.class.getCanonicalName());
+                }else if (position == 4) {
+                    Intent intent = new Intent(getContext(), VideoDetailsActivity.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -109,10 +113,15 @@ public class TabMoreFragment extends BaseAbsLifecycleFragment implements View.On
         item3.itemType = 2;
         item3.title = "关于我们";
 
+        SettingItem item4 = new SettingItem();
+        item4.itemType = 2;
+        item4.title = "视频测试";
+
         dataList.add(header);
         dataList.add(item2);
         dataList.add(item1);
         dataList.add(item3);
+        dataList.add(item4);
     }
 
     @Override

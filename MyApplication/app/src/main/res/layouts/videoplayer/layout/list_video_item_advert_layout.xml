@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.haste.lv.faith.module.videoplayer.player.StandardCoverVideoPlayer
+            android:id="@+id/video_item_player"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <com.haste.lv.faith.module.videoplayer.player.ListADVideoPlayer
+            android:id="@+id/video_ad_item_player"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white">
+
+    </RelativeLayout>
+
+</LinearLayout>

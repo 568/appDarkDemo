@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.haste.lv.faith.module.videoplayer.player.PreViewGSYVideoPlayer
+                android:id="@+id/video_player_view"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <com.haste.lv.faith.module.videoplayer.player.StandardControlVideoPlayer
+                android:id="@+id/video_player_control_view"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="16dp" />
+
+            <Button
+                android:id="@+id/btn_full"
+                android:layout_width="160dp"
+                android:layout_margin="24dp"
+                android:text="打开单独播放"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="45dp" />
+
+            <Button
+                android:id="@+id/btn_list"
+                android:layout_width="160dp"
+                android:layout_margin="24dp"
+                android:text="视频列表播放"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_height="45dp" />
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+</LinearLayout>

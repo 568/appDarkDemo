@@ -46,7 +46,8 @@ public class LoadingMoreFooter extends BaseMoreFooter {
         mText.setText("正在加载...");
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins((int) getResources().getDimension(R.dimen.textandiconmargin), 0, 0, 0);
+        final int margin= (int) getResources().getDimension(R.dimen.textandiconmargin);
+        layoutParams.setMargins(margin, margin/2, 0, margin/2);
 
         mText.setLayoutParams(layoutParams);
         addView(mText);

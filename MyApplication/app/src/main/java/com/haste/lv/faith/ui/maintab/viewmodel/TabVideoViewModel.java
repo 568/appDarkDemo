@@ -17,4 +17,7 @@ public class TabVideoViewModel extends BaseViewModel<TabVideoRepository> {
     public void getVideoListData(){
         mRepository.requestNetWork();
     }
+    public void loadMoreData(int id){
+        mRepository.requestNetWork(id);
+    }
 }

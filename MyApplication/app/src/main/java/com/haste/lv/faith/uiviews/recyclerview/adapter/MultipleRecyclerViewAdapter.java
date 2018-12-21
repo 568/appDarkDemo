@@ -36,9 +36,10 @@ public class MultipleRecyclerViewAdapter<T> extends HelperStateRecyclerViewAdapt
         int layoutId = mItemViewDelegateManager.getItemViewLayoutId(viewType);
         View view = inflateItemView(layoutId, parent);
         //因为Sticky也要用到tag,所有采用多tag的方式处理，产生一个唯一的key值
-        CommonRecyclerViewHolder viewHolder = (CommonRecyclerViewHolder) view.getTag("holder".hashCode());
+        HelperRecyclerViewHolder viewHolder = (HelperRecyclerViewHolder) view.getTag("holder".hashCode());
         if (viewHolder == null || viewHolder.getLayoutId() != layoutId) {
             viewHolder = createViewHolder(view, layoutId);
+            mItemViewDelegateManager.onCreate(viewHolder,viewType);
             return viewHolder;
         }
         return viewHolder;

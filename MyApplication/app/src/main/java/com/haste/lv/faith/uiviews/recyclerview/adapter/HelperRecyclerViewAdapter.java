@@ -34,7 +34,7 @@ public abstract class HelperRecyclerViewAdapter<T> extends BaseRecyclerViewAdapt
 
 
     @Override
-    protected CommonRecyclerViewHolder createViewHolder(View view, int layoutId) {
+    protected HelperRecyclerViewHolder createViewHolder(View view, int layoutId) {
         return new HelperRecyclerViewHolder(view, layoutId);
     }
 

@@ -20,6 +20,8 @@ import java.util.List;
 
 public class MainActivity extends HFBaseActivity {
 
+    TabVideoFragment mTabVideoFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class MainActivity extends HFBaseActivity {
         });
         List<BaseLazyRxFragment> fragments = new ArrayList<>();
         fragments.add(new TabMainFragment());
-        fragments.add(new TabVideoFragment());
+        fragments.add((mTabVideoFragment = new TabVideoFragment()));
         fragments.add(new TabDiscoveryFragment());
         fragments.add(new TabMoreFragment());
         BaseFragmentPagerAdapter adapter = new BaseFragmentPagerAdapter(getSupportFragmentManager(), fragments, titles);
@@ -81,4 +83,12 @@ public class MainActivity extends HFBaseActivity {
             R.drawable.teb_explore_on, R.drawable.teb_me_on};
 
     private ArrayList<CustomTabEntity> mTabEntities = new ArrayList<>();
+
+    @Override
+    public void onBackPressed() {
+        if (mTabVideoFragment.onBackPressed()){
+            return;
+        }
+        super.onBackPressed();
+    }
 }
