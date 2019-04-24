@@ -1,5 +1,6 @@
 package com.haste.lv.faith.module.videoplayer.viewholder;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -41,6 +42,7 @@ public class ItemVideoNormalHolder<V extends VideoVO> implements IRecycleItemVie
         gsyVideoPlayer = holder.getView(R.id.video_item_player);
         gsyVideoOptionBuilder = new GSYVideoOptionBuilder();
         final VideoVO itemData = videoVO;
+        Log.e("tag_mbb","gsyVideoPlayer = "+gsyVideoPlayer.hashCode() +"  holder = " +holder.hashCode());
         //.setMapHeadData(header)
         gsyVideoOptionBuilder
                 .setIsTouchWiget(false)

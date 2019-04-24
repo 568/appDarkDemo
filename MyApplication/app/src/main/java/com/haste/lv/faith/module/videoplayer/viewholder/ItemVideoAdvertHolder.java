@@ -39,6 +39,11 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
         gsyVideoPlayer.setTag("ListADNormalAdapter");
         gsyVideoPlayer.setPlayPosition(position);
 
+//        gsyAdVideoPlayer.setTag("ListADNormalAdapter");
+//        gsyAdVideoPlayer.setPlayPosition(position);
+
+
+        Log.e("tag_mcb","1111 gsyVideoPlayer = " +position +" ---"+ gsyVideoPlayer.hashCode() +" gsyAdVideoPlayer = " +gsyAdVideoPlayer.hashCode());
         boolean isPlaying = gsyVideoPlayer.getCurrentPlayer().isInPlayingState();
         if (!isPlaying) {
             gsyVideoPlayer.setUpLazy(itemData.videoUrl, false, null, null, itemData.title);
@@ -52,12 +57,14 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
         gsyVideoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final StandardCoverVideoPlayer gsyVideoPlayer = holder.getView(R.id.video_item_player);
                 resolveFullBtn(gsyVideoPlayer);
             }
         });
         gsyAdVideoPlayer.getFullscreenButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ListADVideoPlayer gsyAdVideoPlayer = holder.getView(R.id.video_ad_item_player);
                 resolveFullBtn(gsyAdVideoPlayer);
             }
         });
@@ -87,16 +94,20 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
             @Override
             public void onClickStartIcon(String url, Object... objects) {
                 super.onClickStartIcon(url, objects);
-                if (gsyAdVideoPlayer.getGSYVideoManager().listener() != null) {
-                    gsyAdVideoPlayer.getGSYVideoManager().listener().onAutoCompletion();
-                }
+//                final ListADVideoPlayer gsyAdVideoPlayer = holder.getView(R.id.video_ad_item_player);
+//                if (gsyAdVideoPlayer.getGSYVideoManager().listener() != null) {
+//                    gsyAdVideoPlayer.getGSYVideoManager().listener().onAutoCompletion();
+//                }
             }
 
             @Override
             public void onPrepared(String url, Object... objects) {
                 super.onPrepared(url, objects);
+                final StandardCoverVideoPlayer gsyVideoPlayer = holder.getView(R.id.video_item_player);
+                final ListADVideoPlayer gsyAdVideoPlayer = holder.getView(R.id.video_ad_item_player);
+                Log.e("tag_mcb","2222 gsyVideoPlayer = " + gsyVideoPlayer.hashCode() +" gsyAdVideoPlayer = " +gsyAdVideoPlayer.hashCode());
                 if (itemData.isNeedAdOnStart) {
-                    gsyVideoPlayer.getCurrentPlayer().onVideoPause();
+                    //gsyVideoPlayer.getCurrentPlayer().onVideoPause();
                     startAdPlay(gsyAdVideoPlayer, gsyVideoPlayer);
                 }
             }
@@ -124,6 +135,8 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
 
             @Override
             public void onAutoComplete(String url, Object... objects) {
+                final StandardCoverVideoPlayer gsyVideoPlayer = holder.getView(R.id.video_item_player);
+                final ListADVideoPlayer gsyAdVideoPlayer = holder.getView(R.id.video_ad_item_player);
                 //广告结束，释放
                 gsyAdVideoPlayer.getCurrentPlayer().release();
                 gsyAdVideoPlayer.onVideoReset();
@@ -146,6 +159,7 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
 
             @Override
             public void onQuitFullscreen(String url, Object... objects) {
+                final StandardCoverVideoPlayer gsyVideoPlayer = holder.getView(R.id.video_item_player);
                 //退出全屏逻辑
                 if (gsyVideoPlayer.isIfCurrentIsFullscreen()) {
                     gsyVideoPlayer.onBackFullscreen();
@@ -156,6 +170,7 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
         gsyAdVideoPlayer.getJumpAdView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final ListADVideoPlayer gsyAdVideoPlayer = holder.getView(R.id.video_ad_item_player);
                 //这里设置广告的跳过逻辑
                 if (gsyAdVideoPlayer.getGSYVideoManager().listener() != null) {
                     gsyAdVideoPlayer.getGSYVideoManager().listener().onAutoCompletion();
@@ -183,6 +198,7 @@ public class ItemVideoAdvertHolder<V extends VideoVO> implements IRecycleItemVie
     public void startAdPlay(GSYADVideoPlayer gsyadVideoPlayer, StandardGSYVideoPlayer normalPlayer) {
         gsyadVideoPlayer.setVisibility(View.VISIBLE);
         gsyadVideoPlayer.startPlayLogic();
+        Log.e("tag_mcb","3333 gsyVideoPlayer = " + normalPlayer.hashCode() +" gsyAdVideoPlayer = " +gsyadVideoPlayer.hashCode());
         if (normalPlayer.getCurrentPlayer().isIfCurrentIsFullscreen()) {
             resolveFullBtn(gsyadVideoPlayer);
             gsyadVideoPlayer.setSaveBeforeFullSystemUiVisibility(normalPlayer.getSaveBeforeFullSystemUiVisibility());

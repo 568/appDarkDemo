@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.didichuxing.doraemonkit.DoraemonKit;
 import com.haste.lv.faith.utils.SharedPreferencesHelper;
 import com.shuyu.gsyvideoplayer.utils.Debuger;
 
@@ -71,6 +72,7 @@ public class APPApplication extends Application {
         });
         //
         Debuger.enable();
+        DoraemonKit.install(this);
     }
 
     public static Context getContext(){

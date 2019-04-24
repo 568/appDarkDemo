@@ -1,0 +1,8 @@
+
+一权限申请
+1.定位权限
+      在小米6x测试，定位权限已经开启，且在注册清单文件中已经申请了
+       <permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+       <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+       但是hasPermissions()已然提示定位权限没有申请，此时需要在注册清单中配置下面权限，代表API高于23时候
+       <uses-permission-sdk-23 android:name="android.permission.ACCESS_FINE_LOCATION"/>

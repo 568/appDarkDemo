@@ -84,7 +84,7 @@ public class VideoListActivity extends BaseAbsLifecycleActivity<AdvertVideoViewM
                     //当前播放的位置
                     int position = GSYVideoManager.instance().getPlayPosition();
                     //对应的播放列表TAG
-                    if (GSYVideoManager.instance().getPlayTag().equals("ListADNormalAdapter")
+                    if ((GSYVideoManager.instance().getPlayTag().equals("ListADNormalAdapter"))
                             && (position < firstVisibleItem || position > lastVisibleItem)) {
                         //如果滑出去了上面和下面就是否，和今日头条一样
                         //释放广告和视频
@@ -96,6 +96,23 @@ public class VideoListActivity extends BaseAbsLifecycleActivity<AdvertVideoViewM
                         viewAdapter.notifyDataSetChanged();
                     }
                 }
+
+                /*else if (GSYVideoADManager.instance().getPlayPosition()>=0){
+                    //当前播放的位置
+                    int position = GSYVideoADManager.instance().getPlayPosition();
+                    //对应的播放列表TAG
+                    if ((GSYVideoADManager.instance().getPlayTag().equals("ListADNormalAdapter"))
+                            && (position < firstVisibleItem || position > lastVisibleItem)) {
+                        //如果滑出去了上面和下面就是否，和今日头条一样
+                        //释放广告和视频
+                        if (GSYVideoADManager.instance().listener() != null) {
+                            GSYVideoADManager.instance().listener().onAutoCompletion();
+                        }
+                        GSYVideoADManager.releaseAllVideos();
+                        GSYVideoManager.releaseAllVideos();
+                        viewAdapter.notifyDataSetChanged();
+                    }
+                }*/
             }
         });
 

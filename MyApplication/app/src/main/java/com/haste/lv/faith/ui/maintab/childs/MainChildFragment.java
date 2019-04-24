@@ -81,7 +81,7 @@ public class MainChildFragment extends BaseLazyRxFragment implements SwipeRefres
         }
     }
 
-    protected class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+    public class TestAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         private List<String> datas;
         private Context mContext;
