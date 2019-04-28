@@ -10,6 +10,7 @@ import com.haste.lv.faith.R;
 import com.haste.lv.faith.adapters.BaseFragmentPagerAdapter;
 import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.ui.maintab.childs.MainChildFragment;
+import com.haste.lv.faith.ui.maintab.childs.TabAppBarWebFragment;
 import com.haste.lv.faith.ui.maintab.childs.TabLayoutStyleFragment;
 import com.haste.lv.faith.ui.maintab.childs.TabLoadingStyleFragment;
 import com.haste.lv.faith.ui.maintab.childs.TabRichWebFragment;
@@ -65,10 +66,11 @@ public class TabMainFragment extends BaseLazyRxFragment implements MainBehaviorH
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         mFragments = new ArrayList<>();
-        String[] titles = {"关注", "推荐", "热点", "新时代", "体育", "财经频道", "好购物", "RichWebList", "LoadingStyle", "tabLayout样式"};
-        for (int j = 0; j < 7; j++) {
+        String[] titles = {"关注", "推荐", "热点", "新时代", "体育", "财经频道", "AppBar+Web", "RichWebList", "LoadingStyle", "tabLayout样式"};
+        for (int j = 0; j < 6; j++) {
             mFragments.add(new MainChildFragment());
         }
+        mFragments.add(new TabAppBarWebFragment());
         mFragments.add(new TabRichWebFragment());
         mFragments.add(new TabLoadingStyleFragment());
         mFragments.add(new TabLayoutStyleFragment());

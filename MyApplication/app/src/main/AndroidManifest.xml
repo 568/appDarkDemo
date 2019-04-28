@@ -66,6 +66,7 @@
 
         <activity
             android:name="com.haste.lv.faith.MainActivity"
+            android:theme="@style/AppTheme.NoActionBar"
             android:configChanges="keyboardHidden|orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
