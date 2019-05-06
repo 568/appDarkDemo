@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
-    android:background="#41abdc">
+    android:background="#41abdc"
+    android:fitsSystemWindows="true">
 
     <FrameLayout
         android:id="@+id/main_head_pager"
@@ -22,6 +22,7 @@
             android:textColor="#ffff"
             android:textSize="24sp" />
     </FrameLayout>
+
     <FrameLayout
         android:id="@+id/main_toolbar_pager"
         android:layout_width="match_parent"
@@ -32,14 +33,20 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp">
+
+            <View
+                android:id="@+id/status_bar_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp" />
 
             <LinearLayout
                 android:id="@+id/open_header_view"
                 android:layout_width="34dp"
                 android:layout_height="34dp"
+                android:layout_below="@+id/status_bar_view"
                 android:layout_marginRight="3dp"
                 android:background="@drawable/home_top_bg_middle"
                 android:gravity="center"
@@ -60,6 +67,7 @@
                 android:id="@+id/search_gloab_rl"
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
+                android:layout_below="@+id/status_bar_view"
                 android:layout_marginLeft="3dp"
                 android:layout_toRightOf="@+id/open_header_view"
                 android:background="@drawable/home_top_bg_middle">
@@ -82,8 +90,8 @@
         android:id="@+id/main_tab_pager"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        app:layout_behavior="com.haste.lv.faith.ui.maintab.mainbehavior.MainTabBehavior"
         android:background="#EEEEEE"
+        app:layout_behavior="com.haste.lv.faith.ui.maintab.mainbehavior.MainTabBehavior"
         app:tl_indicator_color="#3cd3db"
         app:tl_indicator_height="1.5dp"
         app:tl_indicator_width_equal_title="true"

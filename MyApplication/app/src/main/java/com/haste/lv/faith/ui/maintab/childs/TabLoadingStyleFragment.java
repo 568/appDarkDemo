@@ -26,4 +26,8 @@ public class TabLoadingStyleFragment extends BaseAbsLifecycleFragment {
     public void loadData(long id) {
 
     }
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

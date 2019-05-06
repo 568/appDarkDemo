@@ -14,4 +14,8 @@
     <color name="setting_view_item_bg_normal">#FFFFFFFF</color>
     <color name="setting_view_item_title_text">#FF000000</color>
     <color name="setting_view_item_subtitle_text">#FFCCCCCC</color>
+    <!--文字颜色-->
+    <color name="txt_title_333">#FF333333</color>
+    <color name="txt_title_666">#FF666666</color>
+    <color name="txt_title_999">#FF999999</color>
 </resources>

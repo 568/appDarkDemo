@@ -172,4 +172,10 @@ public abstract class BaseAbsLifecycleFragment<T extends BaseViewModel> extends 
     public boolean isBackPressed() {
         return false;
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
 }

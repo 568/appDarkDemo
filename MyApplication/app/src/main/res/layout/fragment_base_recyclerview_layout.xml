@@ -4,11 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/activity_bg"
-    tools:context="com.haste.lv.faith.MainActivity">
+    android:orientation="vertical">
+    <View
+        android:id="@+id/status_bar_height_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary" />
     <com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView
         android:id="@+id/recyclerview_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>

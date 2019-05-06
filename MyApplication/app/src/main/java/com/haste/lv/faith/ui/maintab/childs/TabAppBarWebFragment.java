@@ -68,4 +68,9 @@ public class TabAppBarWebFragment extends BaseAbsLifecycleFragment {
             webView = null;
         }
     }
+
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

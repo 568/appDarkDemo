@@ -61,4 +61,9 @@ public class DiscoverySimpleFragment extends BaseAbsLifecycleFragment {
         super.onViewCreated(view, savedInstanceState);
         mTvText.setText(TEXTS[getArguments().getInt(ARG_SELECTION_NUM)]); // 设置文本信息
     }
+
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

@@ -89,4 +89,9 @@ public class TabRichWebFragment extends BaseAbsLifecycleFragment {
     public void onResume() {
         super.onResume();
     }
+
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

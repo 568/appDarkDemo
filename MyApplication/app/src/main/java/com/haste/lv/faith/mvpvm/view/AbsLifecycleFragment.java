@@ -158,4 +158,10 @@ public abstract class AbsLifecycleFragment<T extends AbsViewModel> extends BaseL
             }
         }
     }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
 }

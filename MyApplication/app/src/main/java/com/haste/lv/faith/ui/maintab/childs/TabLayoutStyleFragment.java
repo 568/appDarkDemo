@@ -155,4 +155,8 @@ public class TabLayoutStyleFragment extends BaseLazyRxFragment {
             return mFragments.get(position);
         }
     }
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

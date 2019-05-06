@@ -40,14 +40,17 @@ public class TabDiscoveryFragment extends BaseLazyRxFragment {
         mTlTab = view.findViewById(R.id.toolbar_tl_tab);
         mIvOutgoing = view.findViewById(R.id.appbar_iv_outgoing);
         mIvTarget = view.findViewById(R.id.appbar_iv_target);
+        return view;
+    }
 
+    @Override
+    protected void onFragmentFirstVisible() {
+        super.onFragmentFirstVisible();
         // 设置ViewPager布局
         TabDSCardAdapter adapter = new TabDSCardAdapter(getActivity().getSupportFragmentManager());
         mVpContainer.setAdapter(adapter);
         mVpContainer.addOnPageChangeListener(PagerChangeListener.newInstance(adapter, mIvTarget, mIvOutgoing));
         mTlTab.setupWithViewPager(mVpContainer); // 注意在Toolbar中关联ViewPager
-
-        return view;
     }
 
     @Override
@@ -57,6 +60,11 @@ public class TabDiscoveryFragment extends BaseLazyRxFragment {
 
     @Override
     protected boolean useLoadManager() {
+        return false;
+    }
+
+    @Override
+    public boolean immersionBarEnabled() {
         return false;
     }
 }

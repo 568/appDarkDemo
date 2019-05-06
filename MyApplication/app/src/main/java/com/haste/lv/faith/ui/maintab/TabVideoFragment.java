@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.module.videoplayer.model.VideoVO;
 import com.haste.lv.faith.mvpvm.base.BaseListFragment;
@@ -33,6 +34,7 @@ import java.util.List;
  */
 
 public class TabVideoFragment extends BaseListFragment<TabVideoViewModel, TabVideoAdapter> {
+
     @Override
     protected TabVideoAdapter getViewAdapter() {
         if (viewAdapter == null) {
@@ -61,7 +63,7 @@ public class TabVideoFragment extends BaseListFragment<TabVideoViewModel, TabVid
 
             @Override
             public void onLoadMore() {
-                mViewModel.loadMoreData((int) (Math.random()*(101-1+1)));
+                mViewModel.loadMoreData((int) (Math.random() * (101 - 1 + 1)));
             }
         });
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -165,4 +167,19 @@ public class TabVideoFragment extends BaseListFragment<TabVideoViewModel, TabVid
         return true;
     }
 
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this)
+                .keyboardEnable(true)
+                .statusBarView(statusBarView)
+                .init();
+    }
+
+    @Override
+    public void onVisible() {
+        super.onVisible();
+        if (immersionBarEnabled()){
+            initImmersionBar();
+        }
+    }
 }

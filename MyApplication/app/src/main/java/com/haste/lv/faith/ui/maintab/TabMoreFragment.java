@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.haste.lv.faith.FirstActivity;
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.mvpvm.base.BaseAbsLifecycleFragment;
@@ -157,6 +158,11 @@ public class TabMoreFragment extends BaseAbsLifecycleFragment implements View.On
 
     @Override
     protected boolean useLoadManager() {
+        return false;
+    }
+
+    @Override
+    public boolean immersionBarEnabled() {
         return false;
     }
 }

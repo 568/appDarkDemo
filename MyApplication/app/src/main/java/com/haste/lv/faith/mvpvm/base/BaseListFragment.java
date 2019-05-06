@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gyf.immersionbar.ImmersionBar;
 import com.haste.lv.faith.R;
 import com.haste.lv.faith.uiviews.recyclerview.PullToRefreshRecyclerView;
 import com.haste.lv.faith.uiviews.recyclerview.adapter.MultipleRecyclerViewAdapter;
@@ -21,14 +22,20 @@ import com.haste.lv.faith.uiviews.recyclerview.refresh.CustomRefreshHeader;
 public abstract class BaseListFragment<T extends BaseViewModel, VD extends MultipleRecyclerViewAdapter> extends BaseAbsLifecycleFragment<T> {
     protected PullToRefreshRecyclerView mRecyclerView;
     protected VD viewAdapter;
-
+    protected View statusBarView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_base_recyclerview_layout, container, false);
+        statusBarView=view.findViewById(R.id.status_bar_height_view);
         mRecyclerView = view.findViewById(R.id.recyclerview_content);
         initRecyclerView();
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     protected abstract VD getViewAdapter();
@@ -47,4 +54,5 @@ public abstract class BaseListFragment<T extends BaseViewModel, VD extends Multi
     public void loadData(long id) {
 
     }
+
 }

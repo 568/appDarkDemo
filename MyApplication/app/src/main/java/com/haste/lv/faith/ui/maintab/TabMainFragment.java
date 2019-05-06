@@ -42,6 +42,8 @@ public class TabMainFragment extends BaseLazyRxFragment implements MainBehaviorH
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_maintab_main_layout, container, false);
+        View statusBarView=view.findViewById(R.id.status_bar_view);
+        statusBarView.getLayoutParams().height=getStateBar();
         View mToolbar = view.findViewById(R.id.open_header_view);
         mTab = view.findViewById(R.id.main_tab_pager);
         mViewpager = view.findViewById(R.id.main_content_pager);
@@ -125,6 +127,20 @@ public class TabMainFragment extends BaseLazyRxFragment implements MainBehaviorH
 
     @Override
     protected boolean useLoadManager() {
+        return false;
+    }
+
+    private int getStateBar(){
+        int result = 0;
+        int resourceId = this.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = this.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    @Override
+    public boolean immersionBarEnabled() {
         return false;
     }
 }

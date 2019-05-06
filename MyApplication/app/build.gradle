@@ -34,11 +34,12 @@ android {
             resources.srcDirs = ['src', 'src/main/resources', 'src/main/resources/xml']
             aidl.srcDirs = ['src']
             renderscript.srcDirs = ['src']
-            res.srcDirs = [ 'src/main/res', 'src/main/res/xml'
+            res.srcDirs = ['src/main/res', 'src/main/res/xml'
                            , 'src/main/res/layouts', 'src/main/res/layouts/tablayout'
                            , 'src/main/res/layouts/toastlayout'
                            , 'src/main/res/layouts/refreshview'
                            , 'src/main/res/layouts/videoplayer'
+                           , 'src/main/res/layouts/calendarview'
             ]
             assets.srcDirs = ['assets']
             jniLibs.srcDirs = ['jniLibs']
@@ -173,18 +174,18 @@ dependencies {
     annotationProcessor 'android.arch.lifecycle:compiler:1.1.1'
     //rx管理View的生命周期
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.1.0'
-    compile ('com.trello.rxlifecycle2:rxlifecycle-components:2.1.0')
+    compile('com.trello.rxlifecycle2:rxlifecycle-components:2.1.0')
     //material-dialogs
 
     //多功能的视频播放器 'appcompat-v7', 'support-annotations','support-compat'
-    implementation ('com.shuyu:GSYVideoPlayer:6.0.1'){
+    implementation('com.shuyu:GSYVideoPlayer:6.0.1') {
         exclude group: 'com.android.support'
     }
     //流式布局
-    implementation ('com.google.android:flexbox:1.0.0'){
-        exclude group: 'com.android.support',module:'recyclerview-v7'
-        exclude group: 'com.android.support', module:'appcompat-v7'
-        exclude group: 'com.android.support', module:'support-annotations'
+    implementation('com.google.android:flexbox:1.0.0') {
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-annotations'
     }
     //图片加载
     compile 'com.facebook.rebound:rebound:0.3.8'
@@ -198,4 +199,9 @@ dependencies {
     //
     debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.1.2'
     releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.1.2'
+    //
+    // 基础依赖包，必须要依赖
+    implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta02'
+// fragment快速实现（可选）
+    implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta02'
 }

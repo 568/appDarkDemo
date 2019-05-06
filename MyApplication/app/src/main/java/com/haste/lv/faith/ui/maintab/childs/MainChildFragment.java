@@ -120,4 +120,8 @@ public class MainChildFragment extends BaseLazyRxFragment implements SwipeRefres
 
     }
 
+    @Override
+    public boolean immersionBarEnabled() {
+        return false;
+    }
 }

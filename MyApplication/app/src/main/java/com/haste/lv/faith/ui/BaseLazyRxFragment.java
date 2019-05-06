@@ -1,9 +1,13 @@
 package com.haste.lv.faith.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.gyf.immersionbar.ImmersionBar;
+import com.gyf.immersionbar.components.ImmersionOwner;
+import com.gyf.immersionbar.components.ImmersionProxy;
 import com.haste.lv.faith.mvpvm.loadstatus.BaseViewStateControl;
 import com.haste.lv.faith.mvpvm.loadstatus.LoadState;
 import com.haste.lv.faith.mvpvm.loadstatus.LoadStateManager;
@@ -21,7 +25,7 @@ import com.trello.rxlifecycle2.components.support.RxFragment;
  * 4.关于状态页面的自定义可以继承BaseViewStateControl，自定义样式，然后调用mLoadStateManager.showStateView(...)方法即可显示
  * 5.默认有统一的ErrorState和LoadingState两种状态页面
  */
-public abstract class BaseLazyRxFragment extends RxFragment {
+public abstract class BaseLazyRxFragment extends RxFragment implements ImmersionOwner {
     public abstract void loadData(long id);
 
     //
@@ -56,12 +60,14 @@ public abstract class BaseLazyRxFragment extends RxFragment {
             isFragmentVisible = false;
             onFragmentVisibleChange(false);
         }
+        mImmersionProxy.setUserVisibleHint(isVisibleToUser);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initVariable();
+        mImmersionProxy.onCreate(savedInstanceState);
     }
 
     @Override
@@ -104,6 +110,7 @@ public abstract class BaseLazyRxFragment extends RxFragment {
     public void onDestroy() {
         super.onDestroy();
         initVariable();
+        mImmersionProxy.onDestroy();
     }
 
     private void initVariable() {
@@ -179,4 +186,88 @@ public abstract class BaseLazyRxFragment extends RxFragment {
     }
 
     protected LoadStateManager mLoadStateManager;
+
+    //关于沉浸式状态栏的处理
+    /**
+     * ImmersionBar代理类
+     */
+    private ImmersionProxy mImmersionProxy = new ImmersionProxy(this);
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        mImmersionProxy.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mImmersionProxy.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mImmersionProxy.onPause();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        mImmersionProxy.onHiddenChanged(hidden);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        mImmersionProxy.onConfigurationChanged(newConfig);
+    }
+
+    /**
+     * 是否可以实现沉浸式，当为true的时候才可以执行initImmersionBar方法
+     * Immersion bar enabled boolean.
+     *
+     * @return the boolean
+     */
+    @Override
+    public boolean immersionBarEnabled() {
+        return true;
+    }
+
+    @Override
+    public void initImmersionBar() {
+        ImmersionBar.with(this).keyboardEnable(true).init();
+    }
+    /***####以下代码请忽略，仅仅是假设####**/
+    /**
+     * 懒加载，在view初始化完成之前执行
+     * On lazy after view.
+     */
+    @Override
+    public void onLazyBeforeView() {
+    }
+
+    /**
+     * 懒加载，在view初始化完成之后执行
+     * On lazy before view.
+     */
+    @Override
+    public void onLazyAfterView() {
+    }
+
+    /**
+     * Fragment用户可见时候调用
+     * On visible.
+     */
+    @Override
+    public void onVisible() {
+    }
+
+    /**
+     * Fragment用户不可见时候调用
+     * On invisible.
+     */
+    @Override
+    public void onInvisible() {
+    }
 }
