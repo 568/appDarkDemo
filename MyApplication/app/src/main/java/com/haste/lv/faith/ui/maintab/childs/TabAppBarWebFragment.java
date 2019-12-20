@@ -38,6 +38,7 @@ public class TabAppBarWebFragment extends BaseAbsLifecycleFragment {
         rootView = inflater.inflate(R.layout.fragment_maintab_appbarweb_layout, container, false);
         webView = rootView.findViewById(R.id.webView);
         recyclerView = rootView.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         return rootView;
     }
 
@@ -45,7 +46,6 @@ public class TabAppBarWebFragment extends BaseAbsLifecycleFragment {
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         webView.loadUrl("https://github.com/568/appDarkDemo");
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter = new SimpleAdapter(getActivity()));
         List<String> strings = new ArrayList<>();
@@ -68,7 +68,14 @@ public class TabAppBarWebFragment extends BaseAbsLifecycleFragment {
             webView = null;
         }
     }
-
+    public void setHeadState(boolean canScroll) {
+        if (!canScroll) {
+            if (recyclerView != null) {
+                recyclerView.getLayoutManager().scrollToPosition(0);
+            }
+        } else {
+        }
+    }
     @Override
     public boolean immersionBarEnabled() {
         return false;

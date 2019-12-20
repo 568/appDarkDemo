@@ -16,6 +16,7 @@ import com.haste.lv.faith.ui.BaseLazyRxFragment;
 import com.haste.lv.faith.uiviews.tablayout.SegmentTabLayout;
 import com.haste.lv.faith.uiviews.tablayout.SlidingTabLayout;
 import com.haste.lv.faith.uiviews.tablayout.listener.OnTabSelectListener;
+import com.haste.lv.faith.utils.ToastUtil;
 
 import java.util.ArrayList;
 
@@ -93,6 +94,7 @@ public class TabLayoutStyleFragment extends BaseLazyRxFragment {
             @Override
             public void onTabSelect(int position) {
                 mViewPager.setCurrentItem(position);
+                ToastUtil.info("很少见哈骄傲是的哈看手机卡上的骄傲还多久啊");
             }
 
             @Override

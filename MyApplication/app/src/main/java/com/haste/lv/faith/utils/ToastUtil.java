@@ -240,7 +240,7 @@ public class ToastUtil {
         if (shouldTint) {
             drawableFrame = tint9PatchDrawableFrame(context, tintColor);
         } else {
-            drawableFrame = getDrawable(context, R.drawable.toast_frame);
+            drawableFrame = getDrawable(context, R.drawable.hot_share_bg);//toast_frame
         }
         setBackground(toastLayout, drawableFrame);
 
@@ -248,8 +248,9 @@ public class ToastUtil {
             if (icon == null)
                 throw new IllegalArgumentException("Avoid passing 'icon' as null if 'withIcon' is set to true");
             setBackground(toastIcon, icon);
-        } else
+        } else {
             toastIcon.setVisibility(View.GONE);
+        }
 
         toastTextView.setTextColor(textColor);
         toastTextView.setText(message);
@@ -261,7 +262,10 @@ public class ToastUtil {
     }
 
     public static final Drawable tint9PatchDrawableFrame(@NonNull Context context, @ColorInt int tintColor) {
-        final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.toast_frame);
+//        final NinePatchDrawable toastDrawable = (NinePatchDrawable) getDrawable(context, R.drawable.hot_share_bg);
+//        toastDrawable.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
+//        return toastDrawable;
+        Drawable toastDrawable =  getDrawable(context, R.drawable.hot_share_bg);
         toastDrawable.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
         return toastDrawable;
     }

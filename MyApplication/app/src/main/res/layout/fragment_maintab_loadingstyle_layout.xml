@@ -1,156 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mNestedScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:background="#eeeeee"
+    android:scrollbars="none">
 
-    <com.google.android.flexbox.FlexboxLayout
-        app:flexDirection="row"
-        app:flexWrap="wrap"
-        app:justifyContent="flex_start"
-        app:alignItems="center"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator_color="#ff3cd3db" />
+        <com.google.android.flexbox.FlexboxLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:alignItems="center"
+            app:flexDirection="row"
+            app:flexWrap="wrap"
+            app:justifyContent="flex_start">
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallClipRotate"
-            app:indicator_color="#ff3cd3db" />
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallBeat"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallClipRotateMultiple"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallClipRotate"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallClipRotatePulse"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallBeat"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallGridPulse"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallClipRotateMultiple"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallSpinFadeLoader"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallClipRotatePulse"
+                app:indicator_color="#ff3cd3db" />
 
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallGridPulse"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallTrianglePath"
-            app:indicator_color="#ff3cd3db" />
-
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallZigZag"
-            app:indicator_color="#ff3cd3db" />
-
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallZigZagDeflect"
-            app:indicator_color="#ff3cd3db" />
-
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="SemiCircleSpin"
-            app:indicator_color="#ff3cd3db" />
-
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="Pacman"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallSpinFadeLoader"
+                app:indicator_color="#ff3cd3db" />
 
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="LineSpinFadeLoader"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallTrianglePath"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallPulseSync"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallZigZag"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="TriangleSkewSpin"
-            app:indicator_color="#ff3cd3db" />
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallZigZagDeflect"
+                app:indicator_color="#ff3cd3db" />
 
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="SemiCircleSpin"
+                app:indicator_color="#ff3cd3db" />
 
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="CubeTransition"
-            app:indicator_color="#ff3cd3db" />
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="BallScaleMultiple"
-            app:indicator_color="#ff3cd3db" />
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="LineScale"
-            app:indicator_color="#ff3cd3db" />
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="LineScaleParty"
-            app:indicator_color="#ff3cd3db" />
-        <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_margin="16dp"
-            app:indicator="SquareSpin"
-            app:indicator_color="#ff3cd3db" />
-
-    </com.google.android.flexbox.FlexboxLayout>
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="Pacman"
+                app:indicator_color="#ff3cd3db" />
 
 
-</LinearLayout>
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="LineSpinFadeLoader"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallPulseSync"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="TriangleSkewSpin"
+                app:indicator_color="#ff3cd3db" />
+
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="CubeTransition"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="BallScaleMultiple"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="LineScale"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="LineScaleParty"
+                app:indicator_color="#ff3cd3db" />
+
+            <com.haste.lv.faith.uiviews.recyclerview.progressindicator.AVLoadingIndicatorView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="16dp"
+                app:indicator="SquareSpin"
+                app:indicator_color="#ff3cd3db" />
+
+        </com.google.android.flexbox.FlexboxLayout>
+
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

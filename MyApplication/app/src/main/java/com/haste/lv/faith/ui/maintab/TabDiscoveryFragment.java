@@ -47,7 +47,8 @@ public class TabDiscoveryFragment extends BaseLazyRxFragment {
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         // 设置ViewPager布局
-        TabDSCardAdapter adapter = new TabDSCardAdapter(getActivity().getSupportFragmentManager());
+
+        TabDSCardAdapter adapter = new TabDSCardAdapter(this.getChildFragmentManager());
         mVpContainer.setAdapter(adapter);
         mVpContainer.addOnPageChangeListener(PagerChangeListener.newInstance(adapter, mIvTarget, mIvOutgoing));
         mTlTab.setupWithViewPager(mVpContainer); // 注意在Toolbar中关联ViewPager

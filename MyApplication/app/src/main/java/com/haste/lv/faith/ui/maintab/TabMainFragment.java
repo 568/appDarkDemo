@@ -105,6 +105,12 @@ public class TabMainFragment extends BaseLazyRxFragment implements MainBehaviorH
         for (BaseLazyRxFragment u : mFragments) {
             if (u instanceof MainChildFragment) {
                 ((MainChildFragment) u).setHeadState(!state);
+            }else if (u instanceof TabAppBarWebFragment){
+                ((TabAppBarWebFragment) u).setHeadState(!state);
+            }else if (u instanceof TabRichWebFragment){
+                ((TabRichWebFragment) u).setHeadState(!state);
+            }else if (u instanceof TabLoadingStyleFragment){
+                ((TabLoadingStyleFragment) u).setHeadState(!state);
             }else if (u instanceof TabLayoutStyleFragment){
                 ((TabLayoutStyleFragment) u).setHeadState(!state);
             }

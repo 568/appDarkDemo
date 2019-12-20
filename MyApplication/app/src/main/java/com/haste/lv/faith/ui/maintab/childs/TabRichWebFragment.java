@@ -40,6 +40,7 @@ public class TabRichWebFragment extends BaseAbsLifecycleFragment {
         rootView = inflater.inflate(R.layout.fragment_maintab_richweb_layout, container, false);
         webView = rootView.findViewById(R.id.web_view);
         recyclerView = rootView.findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         scrollableLayout = rootView.findViewById(R.id.scrollableLayout);
         scrollableLayout.setCurrentScrollableContainer(new HeaderScrollHelper.ScrollableContainer() {
             @Override
@@ -54,7 +55,6 @@ public class TabRichWebFragment extends BaseAbsLifecycleFragment {
     protected void onFragmentFirstVisible() {
         super.onFragmentFirstVisible();
         webView.loadUrl("https://github.com/568/appDarkDemo");
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         recyclerView.setAdapter(adapter = new SimpleAdapter(getActivity()));
@@ -79,7 +79,15 @@ public class TabRichWebFragment extends BaseAbsLifecycleFragment {
             webView = null;
         }
     }
-
+    public void setHeadState(boolean canScroll) {
+        if (!canScroll) {
+            if (recyclerView != null) {
+                //要禁用，scrollToPosition才有效
+                recyclerView.getLayoutManager().scrollToPosition(0);
+            }
+        } else {
+        }
+    }
     @Override
     public void onPause() {
         super.onPause();

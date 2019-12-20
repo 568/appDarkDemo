@@ -40,6 +40,7 @@
 
 
 二 CalendarView 的全部xml特性如下：
+https://github.com/huanghaibin-dev/CalendarView
                  <declare-styleable name="CalendarView">
 
                          <attr name="calendar_padding" format="dimension" /><!--日历内部左右padding-->

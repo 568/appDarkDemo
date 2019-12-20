@@ -204,4 +204,7 @@ dependencies {
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta02'
 // fragment快速实现（可选）
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0-beta02'
+
+    //popwindow
+    implementation 'com.github.razerdp:BasePopup:2.1.9'
 }
